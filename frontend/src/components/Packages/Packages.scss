@@ -75,7 +75,7 @@
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, $gold 0%, $gold-light 100%);
-    color: $dark-bg;
+    color: $forest;
     padding: 6px 18px;
     border-radius: 20px;
     font-size: .72rem;
@@ -161,14 +161,15 @@
     box-shadow: 0 4px 12px rgba($forest, 0.15);
 
     &:hover {
-      background: $dark-bg;
+      background: $forest-light;
+      color: $white;
       transform: translateY(-2px);
       box-shadow: 0 6px 15px rgba($forest, 0.3);
     }
 
     .packages__card--featured & {
       background: linear-gradient(135deg, $gold 0%, $gold-light 100%);
-      color: $dark-bg;
+      color: $forest;
       box-shadow: 0 4px 12px rgba($gold, 0.2);
 
       &:hover {

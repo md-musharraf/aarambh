@@ -5,14 +5,14 @@
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: $glass-bg-dark;
+  background: $glass-bg;
   backdrop-filter: $glass-blur;
   border-bottom: $glass-border;
   transition: $transition-smooth;
 
   &--scrolled {
-    box-shadow: $shadow-premium;
-    background: rgba(13, 29, 26, 0.9);
+    box-shadow: $shadow;
+    background: rgba(245, 245, 244, 0.92);
   }
 
   &__inner {
@@ -29,7 +29,7 @@
     font-family: $font-serif;
     font-size: 1.5rem;
     font-weight: 700;
-    color: $cream;
+    color: $forest;
     letter-spacing: 1px;
     text-decoration: none;
     display: flex;
@@ -44,7 +44,7 @@
     }
 
     span {
-      color: $gold;
+      color: $forest-light;
     }
   }
   
@@ -63,7 +63,7 @@
   }
 
   &__link {
-    color: rgba($cream, 0.85);
+    color: rgba($forest, 0.8);
     text-decoration: none;
     font-size: 0.875rem;
     font-weight: 500;
@@ -79,14 +79,14 @@
       left: 50%;
       width: 0;
       height: 2px;
-      background: $gold;
+      background: $forest-light;
       transform: translateX(-50%);
       transition: width 0.35s $ease-out-expo;
     }
 
     &:hover,
     &--active {
-      color: $gold;
+      color: $forest-light;
     }
     &:hover::after,
     &--active::after {
@@ -95,19 +95,19 @@
   }
 
   &__book-btn {
-    background: linear-gradient(135deg, $gold 0%, $gold-light 100%);
-    color: $dark-bg !important;
+    background: linear-gradient(135deg, $forest-light 0%, #10b981 100%);
+    color: $white !important;
     padding: 8px 22px !important;
     border-radius: 5px;
     font-weight: 600 !important;
     text-decoration: none;
     font-size: 0.875rem;
     transition: $transition-smooth;
-    box-shadow: 0 4px 15px rgba($gold, 0.25);
+    box-shadow: 0 4px 15px rgba($forest-light, 0.25);
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba($gold, 0.4);
+      box-shadow: 0 6px 20px rgba($forest-light, 0.4);
       filter: brightness(1.05);
     }
     
@@ -124,7 +124,7 @@
     display: none;
     background: none;
     border: none;
-    color: $cream;
+    color: $forest;
     font-size: 1.4rem;
     cursor: pointer;
     padding: 4px;
@@ -132,7 +132,7 @@
 
     &:hover {
       transform: scale(1.1);
-      color: $gold;
+      color: $forest-light;
     }
 
     &:active {
@@ -152,7 +152,7 @@
     top: 70px;
     left: 0;
     right: 0;
-    background: rgba(13, 29, 26, 0.95);
+    background: rgba(2, 44, 34, 0.96);
     backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba($gold, 0.15);
     padding: 24px;
@@ -163,12 +163,12 @@
     transform: translateY(-20px);
     opacity: 0;
     transition: transform 0.4s $ease-out-expo, opacity 0.3s ease;
-
+ 
     &--open {
       pointer-events: auto;
       opacity: 1;
       transform: translateY(0);
-
+ 
       .navbar__mobile-link,
       .navbar__mobile-book {
         opacity: 1;
@@ -176,7 +176,7 @@
       }
     }
   }
-
+ 
   &__mobile-link {
     color: $cream;
     text-decoration: none;
@@ -187,23 +187,23 @@
     transition: $transition-smooth;
     opacity: 0;
     transform: translateY(10px);
-
+ 
     @for $i from 1 through 5 {
       &:nth-child(#{$i}) {
         transition: transform 0.4s $ease-out-expo #{$i * 0.05}s, opacity 0.3s ease #{$i * 0.05}s, color 0.2s ease;
       }
     }
-
+ 
     &:hover,
     &.active {
-      color: $gold;
+      color: $gold-light;
       padding-left: 6px;
     }
   }
-
+ 
   &__mobile-book {
-    background: linear-gradient(135deg, $gold 0%, $gold-light 100%);
-    color: $dark-bg;
+    background: linear-gradient(135deg, $forest-light 0%, #10b981 100%);
+    color: $white;
     padding: 12px 20px;
     border-radius: 5px;
     font-weight: 700;
@@ -215,12 +215,12 @@
     opacity: 0;
     transform: translateY(10px);
     transition: transform 0.4s $ease-out-expo 0.3s, opacity 0.3s ease 0.3s, background 0.2s ease;
-    box-shadow: 0 4px 15px rgba($gold, 0.25);
-
+    box-shadow: 0 4px 15px rgba($forest-light, 0.25);
+ 
     &:hover {
-      background: $gold-light;
+      background: #10b981;
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba($gold, 0.4);
+      box-shadow: 0 6px 20px rgba($forest-light, 0.4);
     }
   }
 }

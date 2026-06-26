@@ -15,9 +15,8 @@
   }
 
   &__card {
-    background: rgba($white, 0.04);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba($gold, 0.18);
+    background: $white;
+    border: 1px solid $dusty-light;
     border-radius: 12px;
     padding: 44px 40px;
     text-align: center;
@@ -47,9 +46,9 @@
 
     &:hover {
       transform: translateY(-4px);
-      background: rgba($white, 0.06);
-      box-shadow: $shadow-premium, 0 10px 30px rgba($gold, 0.05);
-      border-color: rgba($gold, 0.35);
+      background: $white;
+      box-shadow: $shadow-premium, 0 10px 30px rgba($forest-light, 0.05);
+      border-color: rgba($forest-light, 0.35);
     }
   }
 
@@ -61,7 +60,7 @@
 
   &__text {
     font-size: 1.05rem;
-    color: rgba($cream, 0.85);
+    color: $text-mid;
     line-height: 1.85;
     font-weight: 300;
     margin-bottom: 28px;
@@ -75,7 +74,7 @@
 
   &__author {
     font-weight: 600;
-    color: $cream;
+    color: $forest;
     font-size: 1rem;
     letter-spacing: 0.5px;
   }
@@ -92,7 +91,7 @@
   &__progress {
     width: 120px;
     height: 3px;
-    background: rgba($white, 0.1);
+    background: rgba($forest-light, 0.15);
     margin: 28px auto 0;
     border-radius: 2px;
     overflow: hidden;

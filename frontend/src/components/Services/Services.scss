@@ -14,16 +14,17 @@
   }
 
   &__card {
-    background: rgba($white, 0.04);
+    background: rgba($cream, 0.6);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba($gold, 0.15);
-    border-radius: 8px;
+    border: 1px solid rgba($forest-light, 0.15);
+    border-radius: 12px;
     padding: 40px 28px;
     text-align: center;
     transition: $transition-smooth;
     cursor: default;
     position: relative;
     overflow: hidden;
+    box-shadow: $shadow;
 
     @media (max-width: $bp-sm) {
       padding: 32px 20px;
@@ -34,25 +35,25 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 3px;
-      background: linear-gradient(90deg, $gold 0%, $gold-light 100%);
+      background: linear-gradient(90deg, $forest-light 0%, #10b981 100%);
       transform: scaleX(0);
       transition: transform 0.4s $ease-out-expo;
     }
 
     &:hover {
-      background: rgba($white, 0.08);
+      background: $white;
       transform: translateY(-8px);
-      box-shadow: $shadow-premium, 0 10px 30px rgba($gold, 0.08);
-      border-color: rgba($gold, 0.4);
+      box-shadow: $shadow-premium, 0 10px 30px rgba($forest-light, 0.05);
+      border-color: rgba($forest-light, 0.35);
 
       &::before {
         transform: scaleX(1);
       }
 
       .services__icon {
-        background: rgba($gold, 0.22);
-        border-color: rgba($gold, 0.6);
-        box-shadow: 0 0 20px rgba($gold, 0.25);
+        background: rgba($forest-light, 0.16);
+        border-color: rgba($forest-light, 0.45);
+        box-shadow: 0 0 20px rgba($forest-light, 0.15);
         transform: translateY(-2px);
         
         svg {
@@ -63,19 +64,19 @@
 
     h3 {
       font-size: 1.15rem;
-      color: $cream;
+      color: $forest;
       margin-bottom: 12px;
       font-family: $font-serif;
       transition: color 0.3s;
       
       .services__card:hover & {
-        color: $gold-light;
+        color: $forest-light;
       }
     }
 
     p {
       font-size: .88rem;
-      color: rgba($cream, .7);
+      color: $text-mid;
       line-height: 1.7;
       font-weight: 300;
     }
@@ -85,14 +86,14 @@
     width: 68px;
     height: 68px;
     border-radius: 50%;
-    background: rgba($gold, 0.12);
-    border: 1px solid rgba($gold, 0.25);
+    background: rgba($forest-light, 0.08);
+    border: 1px solid rgba($forest-light, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 24px;
     font-size: 1.7rem;
-    color: $gold;
+    color: $forest-light;
     transition: $transition-bounce;
     
     svg {

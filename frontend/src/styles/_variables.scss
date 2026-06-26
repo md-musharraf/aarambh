@@ -1,31 +1,31 @@
-// ─── COLOUR PALETTE (Classic Charcoal & Ivory Gold Theme) ────────────────────────
-$forest: #1c1c1e;        // Primary (Charcoal Dark)
-$forest-light: #2c2c2e;  // Primary Light (Charcoal Mid)
-$cream: #faf7f2;         // Background Light (Ivory)
-$cream-dark: #f2e9d2;    // Accent (Champagne Gold Light)
-$gold: #dfb15b;          // Secondary (Bright Royal Gold)
-$gold-light: #e5c17d;    // Bright Gold Light
-$dusty: #8e8e93;         // Muted Slate Gray
-$dusty-light: #aeaeae;   // Light Gray
-$dark-bg: #121214;       // Background Dark (Deep Obsidian Charcoal)
-$text-dark: #1c1c1e;     // Text Dark (Soft Charcoal Black)
-$text-mid: #636366;      // Text Mid (Muted Slate)
-$text-light: #faf7f2;    // Text Light (Ivory)
+// ─── COLOUR PALETTE (Premium Light Botanical Theme) ────────────────────────
+$forest: #022c22;        // Deep Forest Green (Primary Text Dark)
+$forest-light: #047857;  // Brand Primary (Emerald 700 / Highlights)
+$cream: #f5f5f4;         // Canvas Background (Stone 50)
+$cream-dark: #ecfdf5;    // Secondary Neutral (Emerald 50)
+$gold: #d97706;          // Accent Contrast (Warm Amber / CTAs)
+$gold-light: #f59e0b;    // Amber Light
+$dusty: #78716c;         // Muted Text (Stone 500)
+$dusty-light: #e7e5e4;   // Light Borders (Stone 200)
+$dark-bg: #ffffff;       // Surface Card Background (Pure White)
+$text-dark: #022c22;     // Primary Text Dark (Deep Forest)
+$text-mid: #57534e;      // Secondary Text (Stone 600)
+$text-light: #f5f5f4;    // Light Text
 $white: #ffffff;
-$footer-bg: #0e0e10;     // Footer Background (Rich Black)
+$footer-bg: #022c22;     // Footer Background (Deep Forest)
 
 // ─── SHADOWS ──────────────────────────────────────────────────────────────────
-$shadow: 0 10px 36px rgba(28, 28, 30, 0.12);
-$shadow-gold: 0 6px 24px rgba(223, 177, 91, 0.2);
-$shadow-premium: 0 20px 40px rgba(14, 14, 16, 0.18);
-$shadow-glow-gold: 0 0 30px rgba(223, 177, 91, 0.35);
-$shadow-glow-forest: 0 0 30px rgba(28, 28, 30, 0.2);
+$shadow: 0 4px 20px rgba(120, 113, 108, 0.08);
+$shadow-gold: 0 6px 20px rgba(217, 119, 6, 0.15);
+$shadow-premium: 0 12px 30px rgba(2, 44, 34, 0.06);
+$shadow-glow-gold: 0 0 25px rgba(217, 119, 6, 0.2);
+$shadow-glow-forest: 0 0 25px rgba(4, 120, 87, 0.15);
 
 // ─── GLASSMORPHISM ────────────────────────────────────────────────────────────
-$glass-bg: rgba(250, 247, 242, 0.75);
-$glass-bg-dark: rgba(28, 28, 30, 0.82);
-$glass-border: 1px solid rgba(223, 177, 91, 0.2);
-$glass-blur: blur(14px) saturate(180%);
+$glass-bg: rgba(245, 245, 244, 0.7);
+$glass-bg-dark: rgba(2, 44, 34, 0.9);
+$glass-border: 1px solid rgba(4, 120, 87, 0.12);
+$glass-blur: blur(12px) saturate(180%);
 
 // ─── TRANSITIONS & EASINGS ────────────────────────────────────────────────────
 $transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
