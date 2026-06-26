@@ -4,6 +4,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import ScrollReveal from "../ScrollReveal";
 import "./Booking.scss";
 import axios from "../../axios/config";
+import { toast } from "react-hot-toast";
 
 // Booked dates are fetched from backend and converted to day numbers for current month
 
@@ -156,8 +157,6 @@ const Calendar = ({ onDateSelect }) => {
 };
 
 const Booking = () => {
-  const [bookingMsg, setBookingMsg] = useState("");
-  const [bookingError, setBookingError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
@@ -169,8 +168,6 @@ const Booking = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    setBookingError("");
-    setBookingMsg("");
     setIsSubmitting(true);
 
     const { name, phone, event, date, guests, message, stayRoom } = data;
@@ -191,19 +188,15 @@ const Booking = () => {
     // ✅ Save to backend in background — API failure does NOT block WhatsApp
     try {
       await axios.post("/api/book", data);
-      setBookingMsg("Booking request sent via WhatsApp & saved successfully!");
+      toast.success("Booking request sent! Opening WhatsApp...");
       reset();
     } catch (err) {
       // WhatsApp already opened — just show a non-blocking note
       const msg = err.response?.data?.message || "";
       if (msg === "Date already booked") {
-        setBookingError("⚠️ That date is already booked. Your WhatsApp message was still sent.");
+        toast.error("⚠️ That date is already booked on our calendar.");
       } else {
-        setBookingError(
-          "WhatsApp opened! (Note: booking record could not be saved — " +
-            (msg || "server error") +
-            ")",
-        );
+        toast.error("WhatsApp opened, but backend save failed.");
       }
     } finally {
       setIsSubmitting(false);
@@ -242,8 +235,6 @@ const Booking = () => {
           <h3>Booking Details</h3>
           <p className="booking__sub">Fill in your details and we'll confirm via WhatsApp.</p>
 
-          {bookingMsg && <div className="booking__success">{bookingMsg}</div>}
-          {bookingError && <div className="booking__error-msg">{bookingError}</div>}
 
           <div className="form-group">
             <label htmlFor="bName">Your Name *</label>

@@ -175,6 +175,22 @@ ul {
   }
 }
 
+// Global button active scaling
+button,
+.btn-primary,
+.btn-outline,
+.packages__btn,
+.navbar__book-btn,
+.navbar__mobile-book,
+.booking__confirm-btn,
+.contact__send-btn,
+.about-btn {
+  &:active {
+    transform: scale(0.96) !important;
+    transition: transform 0.1s ease !important;
+  }
+}
+
 // ─── FORM COMMONS ─────────────────────────────────────────────────────────────
 .form-group {
   margin-bottom: 16px;

@@ -2,9 +2,10 @@ import { useForm } from "react-hook-form";
 import { FaWhatsapp, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import ScrollReveal from "../ScrollReveal";
 import "./Contact.scss";
+import { toast } from "react-hot-toast";
 
 const Contact = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = ({ name, phone, event, message }) => {
     const text =
@@ -14,6 +15,8 @@ const Contact = () => {
       (event ? `\n🎉 Event: ${event}` : "") +
       (message ? `\n💬 Message: ${message}` : "");
     window.open(`https://wa.me/918374287422?text=${encodeURIComponent(text)}`, "_blank");
+    toast.success("Inquiry ready! Opening WhatsApp...");
+    reset();
   };
 
   return (

@@ -170,3 +170,22 @@
   to { transform: scale(1); opacity: 1; }
 }
 
+.gallery__skeleton {
+  break-inside: avoid;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba($gold, 0.05) 25%, rgba($gold, 0.15) 50%, rgba($gold, 0.05) 75%);
+  background-size: 200% 100%;
+  animation: skeletonPulse 1.6s infinite linear;
+  border: 1px solid rgba($gold, 0.08);
+}
+
+@keyframes skeletonPulse {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+

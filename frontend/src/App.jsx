@@ -6,6 +6,7 @@ import AppRoutes from "./routes/Routes";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import StayRoomPopup from "./components/StayRoomPopup/StayRoomPopup";
+import { Toaster } from "react-hot-toast";
 
 import Lenis from "lenis";
 import { gsap } from "gsap";
@@ -94,6 +95,29 @@ const App = () => {
         />
       )}
       {!isAdminRoute && <Navbar />}
+      {!isAdminRoute && (
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            duration: 4500,
+            style: {
+              background: "#1c1c1e",
+              color: "#faf7f2",
+              border: "1px solid rgba(223, 177, 91, 0.35)",
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "0.9rem",
+              borderRadius: "8px",
+              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.25)",
+            },
+            success: {
+              iconTheme: {
+                primary: "#dfb15b",
+                secondary: "#1c1c1e",
+              },
+            },
+          }}
+        />
+      )}
       <ScrollToAnchor />
 
       <main style={isAdminRoute ? {} : { paddingTop: "70px" }}>

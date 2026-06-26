@@ -10,6 +10,7 @@ const Gallery = () => {
   const [total, setTotal] = useState(0);
   const [skip, setSkip] = useState(0);
   const [lightbox, setLightbox] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const onKey = (e) => {
@@ -27,6 +28,7 @@ const Gallery = () => {
   }, [lightbox]);
 
   const load = async (nextSkip = 0) => {
+    setLoading(true);
     try {
       const res = await axios.get(`/api/images?limit=${PAGE_SIZE}&skip=${nextSkip}`);
       if (nextSkip === 0) setMediaItems(res.data.images);
@@ -35,6 +37,8 @@ const Gallery = () => {
       setSkip(nextSkip + PAGE_SIZE);
     } catch (err) {
       console.error("Failed to load images", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -95,9 +99,19 @@ const Gallery = () => {
             </div>
           </ScrollReveal>
         ))}
+        {loading &&
+          Array.from({ length: PAGE_SIZE }).map((_, i) => (
+            <div
+              key={`skeleton-${i}`}
+              className="gallery__skeleton"
+              style={{
+                height: i % 3 === 0 ? "300px" : i % 3 === 1 ? "220px" : "260px",
+              }}
+            />
+          ))}
       </div>
 
-      {skip < total && (
+      {skip < total && !loading && (
         <div className="gallery__more">
           <button onClick={() => load(skip)}>View More</button>
         </div>

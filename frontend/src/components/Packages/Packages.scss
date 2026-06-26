@@ -15,13 +15,14 @@
   }
 
   &__card {
-    background: $white;
+    background: rgba($cream, 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba($gold, 0.15);
     border-radius: 12px;
     padding: 44px 30px;
     text-align: center;
     position: relative;
     transition: $transition-smooth;
-    border: 2px solid transparent;
     box-shadow: $shadow;
 
     &:hover {

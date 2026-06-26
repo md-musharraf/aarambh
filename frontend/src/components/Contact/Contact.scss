@@ -38,7 +38,9 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    background: $white;
+    background: rgba($cream, 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba($gold, 0.15);
     border-radius: 8px;
     padding: 18px 22px;
     box-shadow: 0 2px 16px rgba($forest,.08);
@@ -79,7 +81,9 @@
   }
 
   &__form {
-    background: $white;
+    background: rgba($cream, 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba($gold, 0.15);
     border-radius: 10px;
     padding: 36px 32px;
     box-shadow: $shadow;
