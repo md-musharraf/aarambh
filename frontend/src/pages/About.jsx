@@ -7,7 +7,7 @@ const About = () => {
     <div className="about">
       <div className="about-image">
         <img
-          src="https://ik.imagekit.io/ts2hm0adf/tr:n-ik_ml_thumbnail/aarambh-banquet-ranchi/THE9-20_.jpg?updatedAt=1782469690532"
+          src="https://ik.imagekit.io/ts2hm0adf/tr:w-1200/aarambh-banquet-ranchi/THE9-20_.jpg?updatedAt=1782469690532"
           alt="about image"
         />
 
