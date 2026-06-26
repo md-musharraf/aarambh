@@ -1,0 +1,160 @@
+@use "../../styles/variables" as *;
+
+.float-wa {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  z-index: 900;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: $white;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
+  text-decoration: none;
+  transition: $transition-smooth;
+  animation: pulse-wa 2.5s infinite;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.1);
+    filter: brightness(1.05);
+  }
+}
+
+.float-book {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 900;
+  background: linear-gradient(135deg, $gold 0%, $gold-light 100%);
+  color: $dark-bg;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 20px rgba($gold, 0.35);
+  transition: $transition-smooth;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  animation: float 4s ease-in-out infinite 1s;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 28px rgba($gold, 0.55);
+  }
+  
+  &:active {
+    transform: translateY(-2px);
+  }
+}
+
+.float-stay {
+  position: fixed;
+  bottom: 150px;
+  right: 24px;
+  z-index: 900;
+  background: $glass-bg-dark;
+  backdrop-filter: $glass-blur;
+  color: $gold-light;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba($gold, 0.45);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba($gold, 0.18);
+  transition: $transition-smooth;
+  animation: float 4s ease-in-out infinite;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba($gold, 0.35);
+    color: $cream;
+    border-color: $gold;
+  }
+}
+
+// Mobile sticky bottom action bar (overrides floating positions)
+@media (max-width: $bp-sm) {
+  .float-group {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
+    background: rgba(13, 29, 26, 0.93);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid rgba($gold, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    gap: 12px;
+    z-index: 999;
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.35);
+  }
+
+  .float-wa,
+  .float-stay,
+  .float-book {
+    position: static !important;
+    animation: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+
+  .float-wa {
+    width: 46px;
+    height: 46px;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    
+    &:hover {
+      transform: scale(1.05) !important;
+    }
+  }
+
+  .float-stay {
+    width: 46px;
+    height: 46px;
+    font-size: 1.25rem;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    .float-stay__text {
+      display: none;
+    }
+
+    &:hover {
+      transform: scale(1.05) !important;
+    }
+  }
+
+  .float-book {
+    flex: 2;
+    height: 46px;
+    border-radius: 8px;
+    justify-content: center;
+    font-size: 0.9rem;
+    padding: 0 16px;
+    
+    &:hover {
+      transform: translateY(-2px) !important;
+    }
+  }
+}

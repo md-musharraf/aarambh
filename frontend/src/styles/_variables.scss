@@ -1,0 +1,43 @@
+// ─── COLOUR PALETTE (Classic Charcoal & Ivory Gold Theme) ────────────────────────
+$forest: #1c1c1e;        // Primary (Charcoal Dark)
+$forest-light: #2c2c2e;  // Primary Light (Charcoal Mid)
+$cream: #faf7f2;         // Background Light (Ivory)
+$cream-dark: #f2e9d2;    // Accent (Champagne Gold Light)
+$gold: #dfb15b;          // Secondary (Bright Royal Gold)
+$gold-light: #e5c17d;    // Bright Gold Light
+$dusty: #8e8e93;         // Muted Slate Gray
+$dusty-light: #aeaeae;   // Light Gray
+$dark-bg: #121214;       // Background Dark (Deep Obsidian Charcoal)
+$text-dark: #1c1c1e;     // Text Dark (Soft Charcoal Black)
+$text-mid: #636366;      // Text Mid (Muted Slate)
+$text-light: #faf7f2;    // Text Light (Ivory)
+$white: #ffffff;
+$footer-bg: #0e0e10;     // Footer Background (Rich Black)
+
+// ─── SHADOWS ──────────────────────────────────────────────────────────────────
+$shadow: 0 10px 36px rgba(28, 28, 30, 0.12);
+$shadow-gold: 0 6px 24px rgba(223, 177, 91, 0.2);
+$shadow-premium: 0 20px 40px rgba(14, 14, 16, 0.18);
+$shadow-glow-gold: 0 0 30px rgba(223, 177, 91, 0.35);
+$shadow-glow-forest: 0 0 30px rgba(28, 28, 30, 0.2);
+
+// ─── GLASSMORPHISM ────────────────────────────────────────────────────────────
+$glass-bg: rgba(250, 247, 242, 0.75);
+$glass-bg-dark: rgba(28, 28, 30, 0.82);
+$glass-border: 1px solid rgba(223, 177, 91, 0.2);
+$glass-blur: blur(14px) saturate(180%);
+
+// ─── TRANSITIONS & EASINGS ────────────────────────────────────────────────────
+$transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+$transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+$ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+// ─── BREAKPOINTS ──────────────────────────────────────────────────────────────
+$bp-sm: 640px;
+$bp-md: 900px;
+$bp-lg: 1100px;
+
+// ─── TYPOGRAPHY ───────────────────────────────────────────────────────────────
+$font-serif: "Playfair Display", serif;
+$font-sans: "Poppins", sans-serif;
+

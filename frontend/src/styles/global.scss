@@ -1,0 +1,345 @@
+@use "variables" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+section[id] {
+  scroll-margin-top: 100px;
+}
+
+body {
+  font-family: $font-sans;
+  color: $text-dark;
+  background:
+    radial-gradient(circle at top, rgba($gold, 0.08), transparent 34%),
+    linear-gradient(180deg, $cream 0%, $cream-dark 100%);
+  overflow-x: hidden;
+  width: 100%;
+
+  @media (max-width: $bp-sm) {
+    padding-bottom: 72px; // Safety offset for mobile bottom navigation bar
+  }
+}
+
+.app {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $font-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+// ─── SECTION BASE ─────────────────────────────────────────────────────────────
+.section {
+  padding: 90px 24px;
+  overflow: hidden;
+
+  @media (max-width: $bp-sm) {
+    padding: 56px 16px;
+  }
+
+  &--light {
+    background: $cream;
+  }
+  &--dark {
+    background: $dark-bg;
+  }
+  &--mid {
+    background: $forest;
+  }
+  &--tint {
+    background: $cream-dark;
+  }
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: $gold;
+  margin-bottom: 12px;
+}
+
+.section-header h2 {
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  line-height: 1.25;
+  margin-bottom: 14px;
+
+  .section--light &,
+  .section--tint & {
+    color: $forest;
+  }
+  .section--dark &,
+  .section--mid & {
+    color: $cream;
+  }
+}
+
+.divider {
+  width: 50px;
+  background: linear-gradient(135deg, $forest 0%, $forest-light 100%);
+  background: linear-gradient(90deg, $gold, rgba($gold-light, 0.2));
+  margin: 0 auto 18px;
+}
+
+.section-header p {
+  max-width: 580px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.75;
+  font-weight: 300;
+
+  .section--light &,
+  .section--tint & {
+    color: $text-mid;
+  }
+  .section--dark &,
+  .section--mid & {
+    color: rgba($text-light, 0.72);
+  }
+}
+
+// ─── SHARED BUTTONS ───────────────────────────────────────────────────────────
+.btn-primary {
+  background: linear-gradient(135deg, $gold 0%, $gold-light 100%);
+  color: $dark-bg;
+  padding: 14px 36px;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.3s;
+  box-shadow: 0 8px 24px rgba($gold, 0.24);
+  border: 2px solid $gold;
+  display: inline-block;
+
+  &:hover {
+    background: $dark-bg;
+    color: $cream;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba($forest, 0.24);
+  }
+}
+
+.btn-outline {
+  background: transparent;
+  color: $cream;
+  padding: 14px 36px;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  border: 2px solid rgba($cream, 0.6);
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  &:hover {
+    background: rgba($cream, 0.14);
+    border-color: $cream;
+    transform: translateY(-2px);
+  }
+}
+
+// ─── FORM COMMONS ─────────────────────────────────────────────────────────────
+.form-group {
+  margin-bottom: 16px;
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 5px;
+    font-family: $font-sans;
+    font-size: 0.88rem;
+    transition: border 0.25s;
+    outline: none;
+  }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23C99631' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    cursor: pointer;
+  }
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ─── CUSTOM SCROLLBAR & SELECTION ─────────────────────────────────────────────
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: $dark-bg;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, $gold 0%, $forest-light 100%);
+  border-radius: 5px;
+  border: 2px solid $dark-bg;
+
+  &:hover {
+    background: linear-gradient(180deg, $gold-light 0%, $forest 100%);
+  }
+}
+
+::selection {
+  background: $gold;
+  color: $dark-bg;
+}
+
+// ─── PREMIUM SCROLL PROGRESS ──────────────────────────────────────────────────
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, $gold 0%, $gold-light 50%, $forest-light 100%);
+  z-index: 1000;
+  width: 0;
+  transition: width 0.1s ease-out;
+}
+
+// ─── REVEAL ANIMATIONS ────────────────────────────────────────────────────────
+.fade-in,
+.fade-up,
+.slide-in-left,
+.slide-in-right,
+.scale-in,
+.reveal-blur {
+  opacity: 0;
+  transition: 
+    opacity 0.8s $ease-out-expo, 
+    transform 0.8s $ease-out-expo, 
+    filter 0.8s $ease-out-expo;
+  will-change: transform, opacity, filter;
+}
+
+.fade-up {
+  transform: translateY(40px);
+}
+
+.slide-in-left {
+  transform: translateX(-50px);
+}
+
+.slide-in-right {
+  transform: translateX(50px);
+}
+
+.scale-in {
+  transform: scale(0.92);
+}
+
+.reveal-blur {
+  filter: blur(8px);
+  transform: translateY(20px);
+}
+
+// Visible states
+.visible {
+  opacity: 1 !important;
+  transform: translate(0) scale(1) !important;
+  filter: blur(0) !important;
+}
+
+// Animation delays using Sass @for loop
+@for $i from 1 through 8 {
+  .delay-#{$i} {
+    transition-delay: #{$i * 0.12}s !important;
+  }
+}
+
+// Keyframes
+@keyframes kenburns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.12) translate(-1%, -1%);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 24px rgba($gold, 0.24);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 12px 30px rgba($gold, 0.45);
+  }
+}
+
+@keyframes pulse-wa {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px 8px rgba(37, 211, 102, 0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+

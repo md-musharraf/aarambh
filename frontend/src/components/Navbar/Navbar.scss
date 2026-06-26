@@ -1,0 +1,227 @@
+@use "../../styles/variables" as *;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: $glass-bg-dark;
+  backdrop-filter: $glass-blur;
+  border-bottom: $glass-border;
+  transition: $transition-smooth;
+
+  &--scrolled {
+    box-shadow: $shadow-premium;
+    background: rgba(13, 29, 26, 0.9);
+  }
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 70px;
+  }
+
+  &__logo {
+    font-family: $font-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $cream;
+    letter-spacing: 1px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: auto;
+    white-space: nowrap;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+
+    span {
+      color: $gold;
+    }
+  }
+  
+  &__links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    align-items: center;
+    margin-left: auto;
+    position: relative;
+    z-index: 1100;
+
+    @media (max-width: $bp-sm) {
+      display: none;
+    }
+  }
+
+  &__link {
+    color: rgba($cream, 0.85);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: $transition-smooth;
+    position: relative;
+    padding: 4px 0;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: $gold;
+      transform: translateX(-50%);
+      transition: width 0.35s $ease-out-expo;
+    }
+
+    &:hover,
+    &--active {
+      color: $gold;
+    }
+    &:hover::after,
+    &--active::after {
+      width: 100%;
+    }
+  }
+
+  &__book-btn {
+    background: linear-gradient(135deg, $gold 0%, $gold-light 100%);
+    color: $dark-bg !important;
+    padding: 8px 22px !important;
+    border-radius: 5px;
+    font-weight: 600 !important;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: $transition-smooth;
+    box-shadow: 0 4px 15px rgba($gold, 0.25);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba($gold, 0.4);
+      filter: brightness(1.05);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+
+    &::after {
+      display: none !important;
+    }
+  }
+
+  &__hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: $cream;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 4px;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+      color: $gold;
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    @media (max-width: $bp-sm) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  // Mobile drawer
+  &__mobile {
+    display: flex;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(13, 29, 26, 0.95);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba($gold, 0.15);
+    padding: 24px;
+    flex-direction: column;
+    gap: 18px;
+    z-index: 999;
+    pointer-events: none;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.4s $ease-out-expo, opacity 0.3s ease;
+
+    &--open {
+      pointer-events: auto;
+      opacity: 1;
+      transform: translateY(0);
+
+      .navbar__mobile-link,
+      .navbar__mobile-book {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  &__mobile-link {
+    color: $cream;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba($white, 0.05);
+    transition: $transition-smooth;
+    opacity: 0;
+    transform: translateY(10px);
+
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        transition: transform 0.4s $ease-out-expo #{$i * 0.05}s, opacity 0.3s ease #{$i * 0.05}s, color 0.2s ease;
+      }
+    }
+
+    &:hover,
+    &.active {
+      color: $gold;
+      padding-left: 6px;
+    }
+  }
+
+  &__mobile-book {
+    background: linear-gradient(135deg, $gold 0%, $gold-light 100%);
+    color: $dark-bg;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.95rem;
+    text-decoration: none;
+    margin-top: 6px;
+    transition: $transition-smooth;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: transform 0.4s $ease-out-expo 0.3s, opacity 0.3s ease 0.3s, background 0.2s ease;
+    box-shadow: 0 4px 15px rgba($gold, 0.25);
+
+    &:hover {
+      background: $gold-light;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba($gold, 0.4);
+    }
+  }
+}
+
