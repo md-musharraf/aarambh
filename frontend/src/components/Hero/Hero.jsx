@@ -47,7 +47,7 @@ const Hero = () => {
         loop
         playsInline
         preload="metadata"
-        poster="https://ik.imagekit.io/ts2hm0adf/aarambh-banquet-ranchi/THE9-20_.jpg?tr=w-1200"
+        poster="https://ik.imagekit.io/ts2hm0adf/tr:n-ik_ml_thumbnail/aarambh-banquet-ranchi/THE9-20_.jpg?updatedAt=1782469690532"
         className="hero__video-bg"
         src="https://ik.imagekit.io/ts2hm0adf/aarambh-banquet-ranchi/hero.mp4?updatedAt=1782386160073"
       />

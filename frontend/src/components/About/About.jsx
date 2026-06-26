@@ -30,7 +30,7 @@ const About = () => {
         >
           <div className="about__img-inner">
             <img
-              src="https://ik.imagekit.io/ts2hm0adf/aarambh-banquet-ranchi/THE9-20_.jpg?tr=w-1200"
+              src="https://ik.imagekit.io/ts2hm0adf/tr:n-ik_ml_thumbnail/aarambh-banquet-ranchi/THE9-20_.jpg?updatedAt=1782469690532"
               alt="Aarambh Banquet Venue"
             />
           </div>
