@@ -15,11 +15,12 @@ app.use(
       const allowed = [
         "https://the-city-garden.vercel.app",
         "https://aarambh-banquet-ranchi.vercel.app",
+        "https://aarambh-ecru.vercel.app",
       ];
 
       // Allow any Vercel preview URL for this project
       const isVercelPreview =
-        /^https:\/\/(the-city-garden|aarambh-banquet-ranchi).*\.vercel\.app$/.test(origin);
+        /^https:\/\/(the-city-garden|aarambh-banquet-ranchi|aarambh-ecru).*\.vercel\.app$/.test(origin);
       // Allow localhost on any port for local dev
       const isLocalhost = /^http:\/\/localhost:\d+$/.test(origin);
       const isLocalIP = /^http:\/\/10\.\d+\.\d+\.\d+:\d+$/.test(origin);
