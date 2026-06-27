@@ -244,7 +244,7 @@ const Booking = () => {
               placeholder="Enter your full name"
               {...register("name", { required: "Name is required" })}
             />
-            {errors.name && <span className="booking__error">{errors.name.message}</span>}
+            {errors.name && <span className="form-error">{errors.name.message}</span>}
           </div>
 
           <div className="form-row">
@@ -256,7 +256,7 @@ const Booking = () => {
                 placeholder="+91 XXXXX XXXXX"
                 {...register("phone", { required: "Phone is required" })}
               />
-              {errors.phone && <span className="booking__error">{errors.phone.message}</span>}
+              {errors.phone && <span className="form-error">{errors.phone.message}</span>}
             </div>
 
             <div className="form-group">
@@ -279,7 +279,7 @@ const Booking = () => {
                   <option key={e}>{e}</option>
                 ))}
               </select>
-              {errors.event && <span className="booking__error">{errors.event.message}</span>}
+              {errors.event && <span className="form-error">{errors.event.message}</span>}
             </div>
           </div>
 
@@ -291,7 +291,7 @@ const Booking = () => {
                 type="date"
                 {...register("date", { required: "Please select a date" })}
               />
-              {errors.date && <span className="booking__error">{errors.date.message}</span>}
+              {errors.date && <span className="form-error">{errors.date.message}</span>}
             </div>
 
             <div className="form-group">

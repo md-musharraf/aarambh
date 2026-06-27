@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../../styles/variables" as *;
 
 .stay-popup {
@@ -15,13 +16,12 @@
   &__card {
     position: relative;
     width: min(560px, 100%);
-    background: $glass-bg-dark;
-    backdrop-filter: $glass-blur;
-    border: 1px solid rgba($gold, 0.35);
-    border-radius: 12px;
+    background: $white;
+    border: 1px solid rgba($gold, 0.15);
+    border-radius: 16px;
     padding: 32px;
-    color: $cream;
-    box-shadow: $shadow-premium, 0 10px 40px rgba($gold, 0.15);
+    color: $text-dark;
+    box-shadow: $shadow-premium, 0 10px 40px rgba(120, 53, 15, 0.1);
     animation: popupBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 
     @media (max-width: $bp-sm) {
@@ -31,7 +31,7 @@
     h3 {
       margin: 8px 0 10px;
       font-size: 1.6rem;
-      color: $gold-light;
+      color: $gold;
       font-family: $font-serif;
       font-weight: 700;
 
@@ -42,7 +42,7 @@
 
     p {
       margin: 0 0 20px;
-      color: rgba($cream, 0.8);
+      color: $text-mid;
       font-size: 0.95rem;
       line-height: 1.6;
       font-weight: 300;
@@ -60,9 +60,9 @@
     gap: 6px;
     padding: 6px 14px;
     border-radius: 999px;
-    background: rgba($gold, 0.12);
-    border: 1px solid rgba($gold, 0.4);
-    color: $gold-light;
+    background: #ecfdf5;
+    border: 1px solid rgba($forest-light, 0.2);
+    color: #065f46;
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.8px;
@@ -76,8 +76,8 @@
     margin-bottom: 22px;
 
     div {
-      background: rgba($white, 0.03);
-      border: 1px solid rgba($gold, 0.15);
+      background: $cream-dark;
+      border: 1px solid rgba(254, 215, 170, 0.4);
       padding: 14px;
       border-radius: 8px;
       display: flex;
@@ -85,10 +85,11 @@
       gap: 6px;
       font-size: 0.9rem;
       transition: $transition-smooth;
+      color: $text-dark;
 
       &:hover {
-        border-color: rgba($gold, 0.4);
-        background: rgba($white, 0.06);
+        border-color: $gold;
+        background: $white;
         transform: translateY(-2px);
       }
     }
@@ -101,7 +102,7 @@
   &__label {
     font-size: 0.72rem;
     letter-spacing: 0.5px;
-    color: $gold-light;
+    color: $text-mid;
     text-transform: uppercase;
     font-weight: 600;
     opacity: 0.85;
@@ -115,34 +116,35 @@
 
   &__btn {
     padding: 12px 24px;
-    border-radius: 6px;
-    background: linear-gradient(135deg, $gold 0%, $gold-light 100%);
-    color: $forest;
-    font-weight: 700;
+    border-radius: 12px;
+    background: $gold;
+    color: $white;
+    font-weight: 600;
     font-size: 0.88rem;
     text-decoration: none;
     transition: $transition-smooth;
     text-align: center;
-    box-shadow: 0 4px 12px rgba($gold, 0.25);
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2);
     flex: 1;
     min-width: 120px;
 
     &:hover {
+      background: color.adjust($gold, $lightness: -6%);
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba($gold, 0.4);
+      box-shadow: 0 6px 18px rgba(234, 88, 12, 0.35);
     }
   }
 
   &__btn--ghost {
-    background: transparent;
-    color: $gold-light;
-    border: 1px solid rgba($gold, 0.4);
+    background: #ecfdf5;
+    color: #065f46;
+    border: none;
+    border-radius: 12px;
     box-shadow: none;
 
     &:hover {
-      background: rgba($gold, 0.12);
-      border-color: $gold;
-      color: $cream;
+      background: #d1fae5;
+      color: #065f46;
     }
   }
 
@@ -150,9 +152,9 @@
     position: absolute;
     top: 16px;
     right: 16px;
-    background: rgba($white, 0.05);
-    border: 1px solid rgba($white, 0.1);
-    color: rgba($cream, 0.8);
+    background: rgba($forest, 0.05);
+    border: 1px solid rgba($forest, 0.1);
+    color: rgba($forest, 0.6);
     font-size: 1.8rem;
     cursor: pointer;
     width: 38px;
@@ -166,7 +168,7 @@
 
     &:hover {
       background: $gold;
-      color: $dark-bg;
+      color: $white;
       border-color: $gold;
       transform: rotate(90deg);
     }
@@ -175,7 +177,7 @@
   &__keywords {
     margin-top: 20px;
     font-size: 0.72rem;
-    color: rgba($cream, 0.4);
+    color: $dusty;
     text-transform: uppercase;
     letter-spacing: 0.8px;
     text-align: center;

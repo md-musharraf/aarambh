@@ -14,17 +14,16 @@
   }
 
   &__card {
-    background: rgba($cream, 0.6);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba($forest-light, 0.15);
-    border-radius: 12px;
+    background: $white;
+    border: 1px solid rgba(254, 215, 170, 0.4);
+    border-radius: 16px;
     padding: 40px 28px;
     text-align: center;
-    transition: $transition-smooth;
+    transition: all 0.3s ease;
     cursor: default;
     position: relative;
     overflow: hidden;
-    box-shadow: $shadow;
+    box-shadow: 0 4px 20px rgba(120, 53, 15, 0.05);
 
     @media (max-width: $bp-sm) {
       padding: 32px 20px;
@@ -42,9 +41,9 @@
 
     &:hover {
       background: $white;
-      transform: translateY(-8px);
-      box-shadow: $shadow-premium, 0 10px 30px rgba($forest-light, 0.05);
-      border-color: rgba($forest-light, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(120, 53, 15, 0.08);
+      border-color: rgba($gold, 0.25);
 
       &::before {
         transform: scaleX(1);

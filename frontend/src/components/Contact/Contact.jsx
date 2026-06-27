@@ -5,13 +5,13 @@ import "./Contact.scss";
 import { toast } from "react-hot-toast";
 
 const Contact = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const onSubmit = ({ name, phone, event, message }) => {
     const text =
       `🌿 *Aarambh Banquet Inquiry*\n\n` +
-      `👤 Name: ${name || "Not provided"}\n` +
-      `📞 Phone: ${phone || "Not provided"}` +
+      `👤 Name: ${name}\n` +
+      `📞 Phone: ${phone}` +
       (event ? `\n🎉 Event: ${event}` : "") +
       (message ? `\n💬 Message: ${message}` : "");
     window.open(`https://wa.me/918374287422?text=${encodeURIComponent(text)}`, "_blank");
@@ -113,23 +113,25 @@ const Contact = () => {
           <p className="contact__sub">We'll get back to you within a few hours.</p>
 
           <div className="form-group">
-            <label htmlFor="cName">Your Name</label>
+            <label htmlFor="cName">Your Name *</label>
             <input
               id="cName"
               type="text"
               placeholder="Full name"
-              {...register("name")}
+              {...register("name", { required: "Name is required" })}
             />
+            {errors.name && <span className="form-error">{errors.name.message}</span>}
           </div>
 
           <div className="form-group">
-            <label htmlFor="cPhone">Phone / WhatsApp</label>
+            <label htmlFor="cPhone">Phone / WhatsApp *</label>
             <input
               id="cPhone"
               type="tel"
               placeholder="+91 XXXXX XXXXX"
-              {...register("phone")}
+              {...register("phone", { required: "Phone number is required" })}
             />
+            {errors.phone && <span className="form-error">{errors.phone.message}</span>}
           </div>
 
           <div className="form-group">

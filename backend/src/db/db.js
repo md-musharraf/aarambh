@@ -28,6 +28,31 @@ const connectDB = async () => {
       console.log("Dropped existing eventDate_1 index");
     }
 
+    // Migrate legacy documents where eventDate is missing/null but date exists
+    const bookingsToMigrate = await Booking.find({
+      $or: [
+        { eventDate: { $exists: false } },
+        { eventDate: null }
+      ]
+    });
+
+    if (bookingsToMigrate.length > 0) {
+      console.log(`Found ${bookingsToMigrate.length} legacy bookings to migrate.`);
+      for (const doc of bookingsToMigrate) {
+        const rawDoc = doc.toObject();
+        const legacyDate = rawDoc.date;
+        if (legacyDate) {
+          doc.eventDate = new Date(legacyDate);
+          await doc.save({ validateBeforeSave: false });
+          console.log(`Migrated booking ID ${doc._id} (${doc.name}): ${legacyDate} -> ${doc.eventDate}`);
+        } else {
+          console.warn(`Booking ID ${doc._id} has no date or eventDate. Deleting to avoid duplicate null constraint.`);
+          await Booking.deleteOne({ _id: doc._id });
+        }
+      }
+      console.log("Database migration completed successfully.");
+    }
+
     // Recreate the correct unique index
     await BookingCollection.createIndex({ eventDate: 1 }, { unique: true });
     console.log("Created unique index on eventDate");
@@ -38,3 +63,4 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
+

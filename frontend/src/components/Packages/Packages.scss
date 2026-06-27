@@ -15,20 +15,19 @@
   }
 
   &__card {
-    background: rgba($cream, 0.75);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba($gold, 0.15);
-    border-radius: 12px;
+    background: $white;
+    border: 1px solid rgba(254, 215, 170, 0.4);
+    border-radius: 16px;
     padding: 44px 30px;
     text-align: center;
     position: relative;
-    transition: $transition-smooth;
-    box-shadow: $shadow;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(120, 53, 15, 0.05);
 
     &:hover {
-      transform: translateY(-8px);
-      box-shadow: $shadow-premium;
-      border-color: rgba($gold, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(120, 53, 15, 0.08);
+      border-color: rgba($gold, 0.25);
     }
 
     &--featured {
@@ -45,12 +44,12 @@
       }
 
       &:hover {
-        transform: scale(1.05) translateY(-8px);
+        transform: scale(1.05) translateY(-4px);
         animation-play-state: paused;
         box-shadow: $shadow-premium, $shadow-glow-gold;
 
         @media (max-width: $bp-md) {
-          transform: translateY(-4px);
+          transform: translateY(-2px);
         }
       }
 
