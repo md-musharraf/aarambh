@@ -15,7 +15,7 @@
   &__info {
     h2 {
       font-size: 2rem;
-      color: $forest;
+      color: $maroon-dark; // Deep Maroon branding
       margin-bottom: 12px;
     }
   }
@@ -25,6 +25,7 @@
     color: $text-mid;
     margin-bottom: 32px;
     line-height: 1.75;
+    font-weight: 300;
   }
 
   &__cards {
@@ -38,17 +39,20 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    background: rgba($cream, 0.75);
-    backdrop-filter: blur(10px);
+    background: rgba($white, 0.9);
     border: 1px solid rgba($gold, 0.15);
-    border-radius: 8px;
+    border-radius: 12px; // Consistent border radius
     padding: 18px 22px;
-    box-shadow: 0 2px 16px rgba($forest,.08);
+    box-shadow: $shadow;
     text-decoration: none;
-    transition: all .3s;
-    border-left: 3px solid transparent;
+    transition: $transition-smooth;
+    border-left: 4px solid transparent;
 
-    &:hover { transform: translateX(5px); border-left-color: $gold; box-shadow: $shadow; }
+    &:hover { 
+      transform: translateX(6px); 
+      border-left-color: $gold; 
+      box-shadow: $shadow-gold; 
+    }
   }
 
   &__card-icon {
@@ -57,53 +61,57 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     flex-shrink: 0;
 
-    &--green { background: rgba(37,211,102,.1); color: #25d366; }
-    &--blue  { background: rgba($forest,.1);    color: $forest;  }
-    &--gold  { background: rgba($gold,.12);      color: $gold;    }
+    &--green { background: rgba(37,211,102,.12); color: #25d366; }
+    &--blue  { background: rgba(93,12,29,.1);    color: $maroon;  }
+    &--gold  { background: rgba(197,160,89,.12);      color: $gold;    }
   }
 
   &__card-text {
-    strong { display: block; font-size: .85rem; font-weight: 600; color: $text-dark; }
+    strong { display: block; font-size: .88rem; font-weight: 700; color: $maroon-dark; }
     span   { font-size: .8rem; color: $text-mid; }
   }
 
   &__map {
-    border-radius: 10px;
+    border-radius: 16px; // Standardized border radius
     overflow: hidden;
     box-shadow: $shadow;
     height: 300px;
     margin-top: 8px;
+    border: 1px solid rgba($gold, 0.15);
 
     iframe { width: 100%; height: 100%; border: 0; }
   }
 
   &__form {
-    background: rgba($cream, 0.75);
-    backdrop-filter: blur(10px);
+    background: $white;
     border: 1px solid rgba($gold, 0.15);
-    border-radius: 10px;
+    border-radius: 16px;
     padding: 36px 32px;
-    box-shadow: $shadow;
+    box-shadow: $shadow-premium;
 
     @media (max-width: $bp-sm) {
-      padding: 24px 16px;
+      padding: 28px 20px;
     }
 
-    h3 { font-size: 1.4rem; color: $forest; margin-bottom: 6px; }
+    h3 { font-size: 1.4rem; color: $maroon-dark; margin-bottom: 6px; font-family: $font-serif; }
 
     .form-group {
-      label { color: $text-mid; }
+      label { color: $text-mid; font-weight: 600; }
 
       input, select, textarea {
         background: $cream;
-        border: 1px solid rgba($forest,.2);
+        border: 1px solid $dusty-light;
         color: $text-dark;
+        border-radius: 8px;
 
-        &::placeholder { color: rgba($forest,.35); }
-        &:focus { border-color: $gold; }
+        &::placeholder { color: rgba($text-mid,.45); }
+        &:focus { 
+          border-color: $gold; 
+          box-shadow: 0 0 0 3px rgba($gold, 0.15);
+        }
       }
 
       select {
@@ -117,26 +125,112 @@
     font-size: .82rem;
     color: $text-mid;
     margin-bottom: 24px;
+    font-weight: 300;
   }
 
   &__send-btn {
     width: 100%;
-    padding: 13px;
-    background: $forest;
-    color: $cream;
-    border: none;
-    border-radius: 5px;
+    padding: 14px;
+    background: $maroon;
+    color: $white;
+    border: 1px solid $maroon;
+    border-radius: 50px;
     font-family: $font-sans;
-    font-size: .92rem;
+    font-size: .95rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all .3s;
+    transition: $transition-smooth;
     margin-top: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    outline: none;
 
-    &:hover { background: $forest-light; transform: translateY(-2px); }
+    &:hover { 
+      background: $maroon-dark; 
+      border-color: $maroon-dark;
+      transform: translateY(-2px); 
+      box-shadow: 0 6px 15px rgba(93, 12, 29, 0.3);
+    }
+  }
+
+  // FAQ Accordion Styles
+  &__faq {
+    max-width: 850px;
+    margin: 80px auto 0;
+    padding: 0 16px;
+  }
+}
+
+.faq {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+
+  &__item {
+    background: $white;
+    border: 1px solid rgba($gold, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: $shadow;
+    transition: $transition-smooth;
+
+    &:hover {
+      border-color: $gold;
+      box-shadow: 0 6px 20px rgba(197, 160, 89, 0.08);
+    }
+
+    &--open {
+      border-color: $maroon;
+      box-shadow: 0 8px 24px rgba(93, 12, 29, 0.05);
+    }
+  }
+
+  &__question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border: none;
+    padding: 20px 24px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $maroon-dark;
+    cursor: pointer;
+    text-align: left;
+    font-family: $font-sans;
+    outline: none;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $gold-dark;
+    }
+  }
+
+  &__icon {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: $gold;
+    line-height: 1;
+  }
+
+  &__answer-wrap {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  &__answer {
+    padding: 0 24px 20px;
+    font-size: 0.88rem;
+    color: $text-mid;
+    line-height: 1.7;
+    font-weight: 300;
+    border-top: 1px solid rgba($gold, 0.08);
   }
 }

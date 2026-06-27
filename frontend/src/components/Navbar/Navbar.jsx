@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaPhone } from "react-icons/fa";
 import "./Navbar.scss";
 
 const navItems = [
+  { label: "Home", to: "/#hero" },
   { label: "About", to: "/#about" },
   { label: "Services", to: "/#services" },
   { label: "Gallery", to: "/#gallery" },
   { label: "Packages", to: "/#packages" },
+  { label: "Testimonials", to: "/#testimonials" },
   { label: "Contact", to: "/#contact" },
 ];
 
@@ -53,6 +55,15 @@ const Navbar = () => {
               </li>
             ))}
             <li>
+              <a
+                href="tel:08374287422"
+                className="navbar__phone"
+                aria-label="Call Aarambh Banquet"
+              >
+                <FaPhone /> <span>+91 83742 87422</span>
+              </a>
+            </li>
+            <li>
               <Link
                 to="/#booking"
                 className="navbar__book-btn"
@@ -85,6 +96,13 @@ const Navbar = () => {
             {label}
           </Link>
         ))}
+        <a
+          href="tel:08374287422"
+          onClick={close}
+          className="navbar__mobile-phone"
+        >
+          <FaPhone /> Call: +91 83742 87422
+        </a>
         <Link
           to="/#booking"
           onClick={close}

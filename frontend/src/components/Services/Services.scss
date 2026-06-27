@@ -15,7 +15,7 @@
 
   &__card {
     background: $white;
-    border: 1px solid rgba(254, 215, 170, 0.4);
+    border: 1px solid rgba($gold, 0.15); // Luxurious gold tint border
     border-radius: 16px;
     padding: 40px 28px;
     text-align: center;
@@ -23,7 +23,7 @@
     cursor: default;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(120, 53, 15, 0.05);
+    box-shadow: $shadow;
 
     @media (max-width: $bp-sm) {
       padding: 32px 20px;
@@ -34,25 +34,25 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 3px;
-      background: linear-gradient(90deg, $forest-light 0%, #10b981 100%);
+      background: linear-gradient(90deg, $maroon 0%, $gold 100%); // Maroon to Gold gradient
       transform: scaleX(0);
       transition: transform 0.4s $ease-out-expo;
     }
 
     &:hover {
       background: $white;
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(120, 53, 15, 0.08);
-      border-color: rgba($gold, 0.25);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(93, 12, 29, 0.08);
+      border-color: rgba($gold, 0.35);
 
       &::before {
         transform: scaleX(1);
       }
 
       .services__icon {
-        background: rgba($forest-light, 0.16);
-        border-color: rgba($forest-light, 0.45);
-        box-shadow: 0 0 20px rgba($forest-light, 0.15);
+        background: rgba($maroon, 0.1);
+        border-color: rgba($maroon, 0.35);
+        box-shadow: 0 0 20px rgba($maroon, 0.15);
         transform: translateY(-2px);
         
         svg {

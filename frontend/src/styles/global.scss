@@ -135,43 +135,60 @@ ul {
 .btn-primary {
   background: $gold;
   color: $white;
-  padding: 12px 28px;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 500;
+  padding: 14px 32px;
+  border-radius: 50px; // Pill shape for premium feel
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   letter-spacing: 0.5px;
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.2);
-  border: none;
-  display: inline-block;
+  transition: $transition-smooth;
+  box-shadow: 0 4px 18px rgba(197, 160, 89, 0.25);
+  border: 1px solid $gold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  outline: none;
 
   &:hover {
-    background: color.adjust($gold, $lightness: -6%);
+    background: $gold-dark;
+    border-color: $gold-dark;
     color: $white;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(234, 88, 12, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(197, 160, 89, 0.4);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 4px rgba($gold, 0.4);
   }
 }
 
 .btn-outline {
-  background: #ecfdf5;
-  color: #065f46;
-  padding: 12px 28px;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 500;
+  background: transparent;
+  color: $maroon;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   letter-spacing: 0.5px;
-  border: none;
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  border: 2px solid $maroon;
+  transition: $transition-smooth;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  outline: none;
 
   &:hover {
-    background: #d1fae5;
-    transform: translateY(-2px);
+    background: $maroon;
+    color: $white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(93, 12, 29, 0.25);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 4px rgba($maroon, 0.4);
   }
 }
 
@@ -186,7 +203,7 @@ button,
 .contact__send-btn,
 .about-btn {
   &:active {
-    transform: scale(0.95) !important;
+    transform: scale(0.96) !important;
     transition: transform 0.1s ease !important;
   }
 }

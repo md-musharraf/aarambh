@@ -89,6 +89,17 @@ const Services = () => {
           </ScrollReveal>
         ))}
       </div>
+
+      <div className="services__cta" style={{ textAlign: "center", marginTop: "40px" }}>
+        <ScrollReveal animation="fade-up">
+          <a
+            href="#booking"
+            className="btn-primary"
+          >
+            Plan Your Event Today
+          </a>
+        </ScrollReveal>
+      </div>
     </section>
   );
 };

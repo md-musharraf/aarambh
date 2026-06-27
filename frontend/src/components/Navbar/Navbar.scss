@@ -28,14 +28,14 @@
 
   &__logo {
     font-family: $font-serif;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    color: $forest;
-    letter-spacing: 1px;
+    color: $maroon; // Deep Maroon branding
+    letter-spacing: 0.5px;
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     margin-right: auto;
     white-space: nowrap;
     transition: transform 0.3s;
@@ -45,13 +45,17 @@
     }
 
     span {
-      color: $forest-light;
+      color: $gold; // Gold BANQUET text
+      font-weight: 400;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      margin-left: 4px;
     }
   }
   
   &__links {
     display: flex;
-    gap: 28px;
+    gap: 24px;
     list-style: none;
     align-items: center;
     margin-left: auto;
@@ -64,10 +68,10 @@
   }
 
   &__link {
-    color: rgba($forest, 0.8);
+    color: rgba($forest, 0.85);
     text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: 0.9rem;
+    font-weight: 600;
     letter-spacing: 0.5px;
     transition: $transition-smooth;
     position: relative;
@@ -80,14 +84,14 @@
       left: 50%;
       width: 0;
       height: 2px;
-      background: $forest-light;
+      background: $gold;
       transform: translateX(-50%);
       transition: width 0.35s $ease-out-expo;
     }
 
     &:hover,
     &--active {
-      color: $forest-light;
+      color: $maroon;
     }
     &:hover::after,
     &--active::after {
@@ -95,21 +99,47 @@
     }
   }
 
+  &__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: $maroon;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 1px solid rgba($maroon, 0.2);
+    transition: $transition-smooth;
+
+    &:hover {
+      background: rgba($maroon, 0.05);
+      border-color: $maroon;
+      transform: translateY(-2px);
+    }
+
+    svg {
+      color: $gold;
+    }
+  }
+
   &__book-btn {
-    background: $gold;
+    background: $maroon;
     color: $white !important;
     padding: 10px 24px !important;
-    border-radius: 12px;
+    border-radius: 50px;
     font-weight: 600 !important;
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     transition: $transition-smooth;
-    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2);
+    box-shadow: 0 4px 12px rgba(93, 12, 29, 0.2);
+    border: 1px solid $maroon;
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(234, 88, 12, 0.35);
-      background: color.adjust($gold, $lightness: -6%);
+      box-shadow: 0 8px 20px rgba(93, 12, 29, 0.35);
+      background: $maroon-dark;
+      border-color: $maroon-dark;
     }
     
     &:active {
@@ -125,7 +155,7 @@
     display: none;
     background: none;
     border: none;
-    color: $forest;
+    color: $maroon;
     font-size: 1.4rem;
     cursor: pointer;
     padding: 4px;
@@ -133,7 +163,7 @@
 
     &:hover {
       transform: scale(1.1);
-      color: $forest-light;
+      color: $gold;
     }
 
     &:active {
@@ -203,25 +233,51 @@
   }
  
   &__mobile-book {
-    background: $gold;
+    background: $maroon;
     color: $white;
-    padding: 12px 20px;
-    border-radius: 12px;
+    padding: 14px 20px;
+    border-radius: 50px;
     font-weight: 600;
     text-align: center;
-    font-size: 0.95rem;
+    font-size: 1rem;
+    text-decoration: none;
+    margin-top: 6px;
+    transition: $transition-smooth;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: transform 0.4s $ease-out-expo 0.35s, opacity 0.3s ease 0.35s, background 0.2s ease;
+    box-shadow: 0 4px 12px rgba(93, 12, 29, 0.25);
+ 
+    &:hover {
+      background: $maroon-dark;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(93, 12, 29, 0.35);
+    }
+  }
+
+  &__mobile-phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 2px solid $gold;
+    background: transparent;
+    color: $gold;
+    padding: 14px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 1rem;
     text-decoration: none;
     margin-top: 6px;
     transition: $transition-smooth;
     opacity: 0;
     transform: translateY(10px);
     transition: transform 0.4s $ease-out-expo 0.3s, opacity 0.3s ease 0.3s, background 0.2s ease;
-    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.25);
- 
+
     &:hover {
-      background: color.adjust($gold, $lightness: -6%);
+      background: rgba($gold, 0.05);
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(234, 88, 12, 0.35);
     }
   }
 }

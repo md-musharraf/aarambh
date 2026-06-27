@@ -1,8 +1,17 @@
 @use "../../styles/variables" as *;
 
+// ─── DESKTOP FLOATING BUTTONS ────────────────────────────────────────────────
+.float-group {
+  display: block;
+
+  @media (max-width: $bp-sm) {
+    display: none !important; // Hide completely on mobile
+  }
+}
+
 .float-wa {
   position: fixed;
-  bottom: 90px;
+  bottom: 88px;
   right: 24px;
   z-index: 900;
   width: 54px;
@@ -25,13 +34,38 @@
   }
 }
 
+.float-phone {
+  position: fixed;
+  bottom: 152px;
+  right: 24px;
+  z-index: 900;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: $maroon;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: $white;
+  box-shadow: 0 6px 24px rgba(93, 12, 29, 0.35);
+  text-decoration: none;
+  transition: $transition-smooth;
+
+  &:hover {
+    background: $maroon-dark;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 10px 28px rgba(93, 12, 29, 0.5);
+  }
+}
+
 .float-book {
   position: fixed;
   bottom: 24px;
   right: 24px;
   z-index: 900;
-  background: linear-gradient(135deg, $gold 0%, $gold-light 100%);
-  color: $forest;
+  background: $gold;
+  color: $white;
   padding: 12px 24px;
   border-radius: 30px;
   font-size: 0.88rem;
@@ -46,18 +80,15 @@
   animation: float 4s ease-in-out infinite 1s;
 
   &:hover {
+    background: $gold-dark;
     transform: translateY(-6px);
     box-shadow: 0 10px 28px rgba($gold, 0.55);
-  }
-  
-  &:active {
-    transform: translateY(-2px);
   }
 }
 
 .float-stay {
   position: fixed;
-  bottom: 150px;
+  bottom: 216px;
   right: 24px;
   z-index: 900;
   background: $glass-bg-dark;
@@ -86,75 +117,63 @@
   }
 }
 
-// Mobile sticky bottom action bar (overrides floating positions)
-@media (max-width: $bp-sm) {
-  .float-group {
+// ─── MOBILE STICKY BOTTOM CTA BAR ────────────────────────────────────────────
+.mobile-sticky-bar {
+  display: none; // Hidden on desktop
+
+  @media (max-width: $bp-sm) {
+    display: flex;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 72px;
-    background: rgba(28, 26, 23, 0.95);
+    height: 64px;
+    background: rgba(28, 2, 6, 0.96); // Deep maroon black
     backdrop-filter: blur(15px);
-    border-top: 1px solid rgba($gold, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
+    border-top: 1px solid rgba($gold, 0.3);
+    z-index: 9999;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.35);
+    padding: 8px 12px;
     gap: 12px;
-    z-index: 999;
-    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.35);
+    align-items: center;
   }
 
-  .float-wa,
-  .float-stay,
-  .float-book {
-    position: static !important;
-    animation: none !important;
-    transform: none !important;
-    box-shadow: none !important;
-    margin: 0 !important;
-  }
-
-  .float-wa {
-    width: 46px;
+  &__btn {
+    flex: 1;
     height: 46px;
-    font-size: 1.4rem;
-    flex-shrink: 0;
-    
-    &:hover {
-      transform: scale(1.05) !important;
-    }
-  }
-
-  .float-stay {
-    width: 46px;
-    height: 46px;
-    font-size: 1.25rem;
-    padding: 0;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    flex-shrink: 0;
+    gap: 8px;
+    font-family: $font-sans;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: $transition-smooth;
+    outline: none;
 
-    .float-stay__text {
-      display: none;
+    &--call {
+      background: transparent;
+      border: 2px solid $gold;
+      color: $gold;
+
+      &:active {
+        background: rgba($gold, 0.1);
+      }
     }
 
-    &:hover {
-      transform: scale(1.05) !important;
-    }
-  }
+    &--wa {
+      background: #25d366;
+      color: $white;
+      border: none;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
 
-  .float-book {
-    flex: 2;
-    height: 46px;
-    border-radius: 8px;
-    justify-content: center;
-    font-size: 0.9rem;
-    padding: 0 16px;
-    
-    &:hover {
-      transform: translateY(-2px) !important;
+      &:active {
+        filter: brightness(0.95);
+      }
     }
   }
 }

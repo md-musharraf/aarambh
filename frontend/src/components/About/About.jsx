@@ -1,20 +1,38 @@
-import { Link } from "react-router-dom";
-import { FaTree, FaStar, FaRoad, FaUsers, FaConciergeBell } from "react-icons/fa";
+import { FaAward, FaPaintBrush, FaUtensils, FaParking, FaBolt, FaWind } from "react-icons/fa";
 import ScrollReveal from "../ScrollReveal";
 import "./About.scss";
 
-const features = [
+const badges = [
   {
-    icon: <FaTree />,
-    text: "Lush open garden with beautifully manicured landscapes and natural ambiance",
+    icon: <FaAward />,
+    title: "Premium Service",
+    desc: "Exemplary management and hospitality team.",
   },
-  { icon: <FaStar />, text: "Thoughtfully designed event spaces with elegant decor setups" },
-  { icon: <FaRoad />, text: "Conveniently located with easy access and ample parking" },
   {
-    icon: <FaUsers />,
-    text: "Accommodates intimate gatherings to large celebrations of 500+ guests",
+    icon: <FaPaintBrush />,
+    title: "Custom Decor",
+    desc: "Bespoke themed styling & floral designs.",
   },
-  { icon: <FaConciergeBell />, text: "Dedicated event coordination and hospitality team" },
+  {
+    icon: <FaUtensils />,
+    title: "Veg & Non-Veg",
+    desc: "Dedicated separate kitchens for prep.",
+  },
+  {
+    icon: <FaParking />,
+    title: "Ample Parking",
+    desc: "Secure private parking for guests.",
+  },
+  {
+    icon: <FaBolt />,
+    title: "100% Backup",
+    desc: "Full power backup for smooth execution.",
+  },
+  {
+    icon: <FaWind />,
+    title: "AC Banquet",
+    desc: "Fully air-conditioned indoor facilities.",
+  },
 ];
 
 const About = () => {
@@ -52,27 +70,30 @@ const About = () => {
             creates the perfect backdrop for your special moments.
           </p>
 
-          <ul className="about__features">
-            {features.map(({ icon, text }, idx) => (
+          <div className="about__badges">
+            {badges.map(({ icon, title, desc }, idx) => (
               <ScrollReveal
-                as="li"
-                key={text}
+                key={title}
                 animation="fade-up"
                 delay={idx + 1}
-                className="about__feature"
+                className="about__badge-card"
               >
-                <span>{icon}</span>
-                <p>{text}</p>
+                <div className="about__badge-icon">{icon}</div>
+                <div className="about__badge-info">
+                  <h4>{title}</h4>
+                  <p>{desc}</p>
+                </div>
               </ScrollReveal>
             ))}
-          </ul>
+          </div>
 
-          <Link
-            to="/booking"
+          <a
+            href="#booking"
             className="btn-primary"
+            style={{ marginTop: "24px" }}
           >
             Reserve Your Date
-          </Link>
+          </a>
         </ScrollReveal>
       </div>
     </section>

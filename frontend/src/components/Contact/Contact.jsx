@@ -1,11 +1,40 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaWhatsapp, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import ScrollReveal from "../ScrollReveal";
 import "./Contact.scss";
 import { toast } from "react-hot-toast";
 
+const faqs = [
+  {
+    question: "What is the guest capacity of Aarambh Banquet?",
+    answer: "Aarambh Banquet can comfortably host intimate gatherings to grand celebrations of 500+ guests, utilizing our spacious air-conditioned indoor hall and lush open-air garden lawn."
+  },
+  {
+    question: "Do you have separate kitchens for Veg and Non-Veg food?",
+    answer: "Yes, we prioritize traditional and cultural preferences. We have strictly segregated, completely independent kitchens for preparing vegetarian and non-vegetarian cuisines."
+  },
+  {
+    question: "Is there sufficient parking space available at the venue?",
+    answer: "Yes, we provide ample secure private parking space inside the venue premises for over 100+ vehicles, managed by professional security guards during your event."
+  },
+  {
+    question: "Do you provide custom decoration and themes?",
+    answer: "Absolutely! We offer custom elegant stage setups, custom lighting, premium floral decors, and specific themes customized to your taste. You can consult our in-house decor team to customize your design."
+  },
+  {
+    question: "What is the booking and cancellation policy?",
+    answer: "A booking deposit of 30% is required to reserve your date. The remaining balance is payable prior to the event. Cancellation policies depend on the notice period; please contact us for custom terms."
+  }
+];
+
 const Contact = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const toggleFaq = (idx) => {
+    setOpenFaq(openFaq === idx ? null : idx);
+  };
 
   const onSubmit = ({ name, phone, event, message }) => {
     const text =
@@ -83,7 +112,7 @@ const Contact = () => {
                 </div>
                 <div className="contact__card-text">
                   <strong>Find Us on Map</strong>
-                  <span>Ketari Bagan Rd, Ketari Bagan, Lower Chutia, Namkum, Ranchi, Jharkhand 834010</span>
+                  <span>Ketari Bagan Rd, Namkum, Ranchi, JH 834010</span>
                 </div>
               </a>
             </div>
@@ -171,6 +200,42 @@ const Contact = () => {
             <FaWhatsapp /> Send via WhatsApp
           </button>
         </ScrollReveal>
+      </div>
+
+      {/* FAQ Accordion Section */}
+      <div className="contact__faq">
+        <ScrollReveal animation="fade-up" className="section-header" style={{ marginTop: "80px", marginBottom: "40px" }}>
+          <div className="section-tag">Frequently Asked Queries</div>
+          <h2>Queries & Clarifications</h2>
+          <div className="divider" />
+        </ScrollReveal>
+
+        <div className="faq__list">
+          {faqs.map(({ question, answer }, idx) => {
+            const isOpen = openFaq === idx;
+            return (
+              <ScrollReveal
+                key={idx}
+                animation="fade-up"
+                delay={idx + 1}
+                className={`faq__item${isOpen ? " faq__item--open" : ""}`}
+              >
+                <button
+                  type="button"
+                  className="faq__question"
+                  onClick={() => toggleFaq(idx)}
+                  aria-expanded={isOpen}
+                >
+                  <span>{question}</span>
+                  <span className="faq__icon">{isOpen ? "−" : "+"}</span>
+                </button>
+                <div className="faq__answer-wrap" style={{ maxHeight: isOpen ? "200px" : "0px" }}>
+                  <div className="faq__answer">{answer}</div>
+                </div>
+              </ScrollReveal>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

@@ -107,6 +107,79 @@ const Packages = () => {
           </ScrollReveal>
         ))}
       </div>
+
+      {/* Package Comparison Table */}
+      <ScrollReveal animation="fade-up" className="packages__comparison">
+        <h3>Detailed Package Comparison</h3>
+        <div className="packages__table-wrap">
+          <table className="packages__table">
+            <thead>
+              <tr>
+                <th>Features & Services</th>
+                <th>Essential</th>
+                <th>Grand (Popular)</th>
+                <th>Royal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Guest Capacity</strong></td>
+                <td>Up to 150 guests</td>
+                <td>Up to 400 guests</td>
+                <td>500+ guests (Lawn + Hall)</td>
+              </tr>
+              <tr>
+                <td><strong>Access Duration</strong></td>
+                <td>6 Hours Access</td>
+                <td>12 Hours Access</td>
+                <td>Full Day Access (24h)</td>
+              </tr>
+              <tr>
+                <td><strong>Floral & Decor</strong></td>
+                <td>Basic Floral Decor</td>
+                <td>Premium Stage & Entry Decor</td>
+                <td>Luxury Custom Themed Decor</td>
+              </tr>
+              <tr>
+                <td><strong>Lighting & AV</strong></td>
+                <td>Standard Lighting</td>
+                <td>Premium Sound & LEDs</td>
+                <td>Full Production AV & DJ Setup</td>
+              </tr>
+              <tr>
+                <td><strong>Event Coordination</strong></td>
+                <td>Venue Manager Only</td>
+                <td>Stage Coordinator</td>
+                <td>Dedicated Event Planner</td>
+              </tr>
+              <tr>
+                <td><strong>Separate Kitchens (Veg/Non-Veg)</strong></td>
+                <td>Included</td>
+                <td>Included</td>
+                <td>Included + Dining Service</td>
+              </tr>
+              <tr>
+                <td><strong>Ample Parking Space</strong></td>
+                <td>Included</td>
+                <td>Included</td>
+                <td>Included (Reserved slots)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ScrollReveal>
+
+      {/* Conversion CTA */}
+      <div className="packages__cta" style={{ textAlign: "center", marginTop: "40px" }}>
+        <ScrollReveal animation="fade-up">
+          <a
+            href="#booking"
+            className="btn-primary"
+          >
+            Request Custom Event Quote
+          </a>
+        </ScrollReveal>
+      </div>
     </section>
   );
 };

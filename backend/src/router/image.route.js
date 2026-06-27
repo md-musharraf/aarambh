@@ -45,13 +45,21 @@ router.post("/upload/video", verifyAdmin, upload.single("video"), async (req, re
   }
 });
 
-// GET /api/images?limit=9&skip=0
+// GET /api/images?limit=9&skip=0&category=Wedding
 router.get("/images", async (req, res) => {
   try {
     const limit = parseInt(req.query.limit || "9", 10);
     const skip = parseInt(req.query.skip || "0", 10);
-    const images = await Image.find().sort({ _id: -1 }).skip(skip).limit(limit);
-    const total = await Image.countDocuments();
+    const { category } = req.query;
+
+    const query = {};
+    if (category && category !== "All") {
+      // Find event matching the category name (case-insensitive substring match)
+      query.event = { $regex: category, $options: "i" };
+    }
+
+    const images = await Image.find(query).sort({ _id: -1 }).skip(skip).limit(limit);
+    const total = await Image.countDocuments(query);
     res.json({ images, total });
   } catch (err) {
     console.error(err);

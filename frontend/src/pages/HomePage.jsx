@@ -6,6 +6,7 @@ import Gallery from '../components/Gallery/Gallery';
 import Booking from '../components/Booking/Booking';
 import Packages from '../components/Packages/Packages';
 import Testimonials from '../components/Testimonials/Testimonials';
+import ClosingCTA from '../components/ClosingCTA/ClosingCTA';
 import Contact from '../components/Contact/Contact';
 
 /**
@@ -22,6 +23,7 @@ const HomePage = () => (
     <Booking />
     <Packages />
     <Testimonials />
+    <ClosingCTA />
     <Contact />
   </>
 );

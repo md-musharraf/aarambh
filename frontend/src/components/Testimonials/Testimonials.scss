@@ -16,12 +16,12 @@
 
   &__card {
     background: $white;
-    border: 1px solid rgba(254, 215, 170, 0.4);
+    border: 1px solid rgba($gold, 0.15);
     border-radius: 16px;
     padding: 44px 40px;
     text-align: center;
     position: relative;
-    box-shadow: 0 4px 20px rgba(120, 53, 15, 0.05);
+    box-shadow: $shadow;
     transition: $transition-smooth;
 
     @media (max-width: $bp-sm) {
@@ -47,7 +47,7 @@
     &:hover {
       transform: translateY(-4px);
       background: $white;
-      box-shadow: 0 10px 30px rgba(120, 53, 15, 0.08);
+      box-shadow: 0 12px 30px rgba(93, 12, 29, 0.06);
       border-color: rgba($gold, 0.25);
     }
   }
@@ -63,7 +63,7 @@
     color: $text-mid;
     line-height: 1.85;
     font-weight: 300;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 
     @media (max-width: $bp-sm) {
       font-size: 0.95rem;
@@ -72,18 +72,41 @@
     }
   }
 
+  &__author-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  &__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid $gold;
+    box-shadow: $shadow;
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__author {
-    font-weight: 600;
-    color: $forest;
-    font-size: 1rem;
+    font-weight: 700;
+    color: $maroon-dark;
+    font-size: 0.95rem;
     letter-spacing: 0.5px;
   }
 
   &__event {
-    font-size: 0.82rem;
-    color: $gold-light;
-    font-weight: 500;
-    margin-top: 4px;
+    font-size: 0.75rem;
+    color: $gold;
+    font-weight: 600;
+    margin-top: 2px;
     text-transform: uppercase;
     letter-spacing: 0.8px;
   }
@@ -91,7 +114,7 @@
   &__progress {
     width: 120px;
     height: 3px;
-    background: rgba($forest-light, 0.15);
+    background: rgba($maroon, 0.15);
     margin: 28px auto 0;
     border-radius: 2px;
     overflow: hidden;
@@ -101,7 +124,7 @@
     height: 100%;
     background: linear-gradient(90deg, $gold 0%, $gold-light 100%);
     width: 0%;
-    animation: timelineProgress 5s linear forwards;
+    animation: timelineProgress 6s linear forwards;
   }
 
   &__dots {

@@ -16,18 +16,18 @@
 
   &__card {
     background: $white;
-    border: 1px solid rgba(254, 215, 170, 0.4);
+    border: 1px solid rgba($gold, 0.15); // Consistent gold-tint border
     border-radius: 16px;
     padding: 44px 30px;
     text-align: center;
     position: relative;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(120, 53, 15, 0.05);
+    box-shadow: $shadow;
 
     &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(120, 53, 15, 0.08);
-      border-color: rgba($gold, 0.25);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(93, 12, 29, 0.06);
+      border-color: rgba($gold, 0.35);
     }
 
     &--featured {
@@ -44,7 +44,7 @@
       }
 
       &:hover {
-        transform: scale(1.05) translateY(-4px);
+        transform: scale(1.05) translateY(-5px);
         animation-play-state: paused;
         box-shadow: $shadow-premium, $shadow-glow-gold;
 
@@ -74,7 +74,7 @@
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, $gold 0%, $gold-light 100%);
-    color: $forest;
+    color: $maroon-dark; // Rich contrast
     padding: 6px 18px;
     border-radius: 20px;
     font-size: .72rem;
@@ -88,7 +88,7 @@
   &__name {
     font-family: $font-serif;
     font-size: 1.4rem;
-    color: $forest;
+    color: $maroon-dark;
     margin-bottom: 8px;
     font-weight: 700;
   }
@@ -97,7 +97,7 @@
     font-size: 2.4rem;
     font-weight: 700;
     font-family: $font-serif;
-    color: $forest;
+    color: $maroon-dark;
     margin-bottom: 4px;
   }
 
@@ -141,7 +141,7 @@
     transition: transform 0.2s;
   }
   &__cross {
-    color: #e57373;
+    color: #e11d48; // Standard soft rose error color
     font-size: .9rem;
     flex-shrink: 0;
   }
@@ -149,34 +149,109 @@
   &__btn {
     display: block;
     padding: 14px 28px;
-    border-radius: 6px;
+    border-radius: 50px; // Pill shape button
     font-size: .9rem;
     font-weight: 600;
     letter-spacing: .5px;
     transition: $transition-smooth;
-    background: linear-gradient(135deg, $forest 0%, $forest-light 100%);
-    color: $cream;
+    background: $maroon;
+    color: $white;
     text-decoration: none;
-    box-shadow: 0 4px 12px rgba($forest, 0.15);
+    box-shadow: 0 4px 12px rgba(93, 12, 29, 0.2);
+    border: 1px solid $maroon;
 
     &:hover {
-      background: $forest-light;
+      background: $maroon-dark;
+      border-color: $maroon-dark;
       color: $white;
       transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba($forest, 0.3);
+      box-shadow: 0 6px 15px rgba(93, 12, 29, 0.35);
     }
 
     .packages__card--featured & {
-      background: linear-gradient(135deg, $gold 0%, $gold-light 100%);
-      color: $forest;
-      box-shadow: 0 4px 12px rgba($gold, 0.2);
+      background: $gold;
+      color: $white;
+      border-color: $gold;
+      box-shadow: 0 4px 12px rgba(197, 160, 89, 0.25);
 
       &:hover {
-        background: $cream;
-        color: $forest;
+        background: $gold-dark;
+        border-color: $gold-dark;
+        color: $white;
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba($gold, 0.45);
+        box-shadow: 0 6px 20px rgba(197, 160, 89, 0.45);
       }
+    }
+  }
+
+  // Comparison Table Styling
+  &__comparison {
+    max-width: 900px;
+    margin: 80px auto 0;
+    padding: 0 16px;
+
+    h3 {
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      color: $maroon-dark;
+      text-align: center;
+      margin-bottom: 28px;
+      font-family: $font-serif;
+    }
+  }
+
+  &__table-wrap {
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid rgba($gold, 0.15);
+    box-shadow: $shadow-premium;
+    background: $white;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+    min-width: 650px;
+
+    th, td {
+      padding: 18px 24px;
+      border-bottom: 1px solid rgba($gold, 0.1);
+    }
+
+    th {
+      background: $maroon;
+      color: $white;
+      font-weight: 600;
+      font-family: $font-sans;
+      letter-spacing: 0.5px;
+      
+      &:first-child {
+        border-top-left-radius: 16px;
+      }
+      &:last-child {
+        border-top-right-radius: 16px;
+      }
+    }
+
+    tbody tr {
+      transition: background 0.25s ease;
+
+      &:nth-child(even) {
+        background: rgba(197, 160, 89, 0.03); // Gold tint subtle zebra striped
+      }
+
+      &:hover {
+        background: rgba(197, 160, 89, 0.08); // Golden hover state highlight
+      }
+
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+
+    strong {
+      color: $maroon-dark;
     }
   }
 }

@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import { FaLeaf, FaWhatsapp } from "react-icons/fa";
 import { gsap } from "gsap";
 import "./Hero.scss";
@@ -63,31 +62,32 @@ const Hero = () => {
         </div>
 
         <h1 className="hero__heading" style={{ opacity: 0 }}>
-          Celebrate Your
+          Begin Your Forever
           <br />
-          Special Moments <em>in Elegance</em>
+          Where <em>Luxury Meets Celebration</em>
         </h1>
 
         <p className="hero__sub" style={{ opacity: 0 }}>
-          Elegant banquet venue in Ranchi for weddings, receptions, engagements,
+          Ranchi's premier banquet hall and open garden venue, offering custom decor,
           <br />
-          birthday parties &amp; corporate events
+          in-house catering, and elegant spaces for up to 500+ guests.
         </p>
 
         <div className="hero__btns" style={{ opacity: 0 }}>
-          <Link
-            to="/booking"
+          <a
+            href="#booking"
             className="btn-primary"
           >
             Check Availability
-          </Link>
+          </a>
           <a
             href={WA_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-outline"
+            style={{ borderColor: "#ffffff", color: "#ffffff" }}
           >
-            <FaWhatsapp /> Book Now
+            <FaWhatsapp /> Book via WhatsApp
           </a>
         </div>
       </div>

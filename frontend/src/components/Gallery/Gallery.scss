@@ -69,30 +69,84 @@
     }
   }
 
+  &__tour-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+  }
+
+  &__tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    padding: 0 16px;
+
+    @media (max-width: $bp-sm) {
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__tab {
+    padding: 10px 22px;
+    border-radius: 50px;
+    border: 1px solid rgba($gold, 0.35);
+    background: transparent;
+    color: $text-mid;
+    font-family: $font-sans;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    transition: $transition-smooth;
+
+    svg {
+      color: $gold;
+    }
+
+    &:hover {
+      border-color: $maroon;
+      color: $maroon;
+      background: rgba(93, 12, 29, 0.04);
+      transform: translateY(-2px);
+    }
+
+    &--active {
+      background: $maroon !important;
+      color: $white !important;
+      border-color: $maroon !important;
+      box-shadow: 0 4px 15px rgba(93, 12, 29, 0.25);
+    }
+  }
+
   &__more {
     display: flex;
     justify-content: center;
     margin-top: 36px;
 
     button {
-      padding: 12px 32px;
+      padding: 14px 36px;
       border-radius: 999px;
       border: 2px solid rgba($gold, 0.6);
-      background: rgba($dark-bg, 0.05);
-      color: $forest;
+      background: rgba($white, 0.05);
+      color: $maroon;
       font-family: $font-sans;
       font-weight: 600;
       letter-spacing: 0.5px;
       cursor: pointer;
       transition: $transition-smooth;
-      box-shadow: 0 8px 20px rgba($gold, 0.12);
+      box-shadow: 0 8px 20px rgba(197, 160, 89, 0.12);
 
       &:hover {
-        background: linear-gradient(135deg, $gold 0%, $gold-light 100%);
-        color: $forest;
+        background: $maroon;
+        color: $white;
+        border-color: $maroon;
         transform: translateY(-2px);
-        box-shadow: 0 12px 28px rgba($gold, 0.35);
-        border-color: $gold;
+        box-shadow: 0 12px 28px rgba(93, 12, 29, 0.3);
       }
       
       &:active {
@@ -106,7 +160,7 @@
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background: rgba(13, 29, 26, 0.85);
+    background: rgba(28, 2, 6, 0.95); // Deep Maroon-Black backdrop
     backdrop-filter: blur(15px);
     align-items: center;
     justify-content: center;
@@ -116,10 +170,10 @@
   &__lightbox-media {
     max-width: 90vw;
     max-height: 85vh;
-    border-radius: 8px;
-    border: 1px solid rgba($gold, 0.25);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-    background: #0d1414;
+    border-radius: 12px;
+    border: 1px solid rgba($gold, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
+    background: #18181b; // Zinc dark background
     animation: lightboxZoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
@@ -153,7 +207,7 @@
 
     &:hover {
       background: $gold;
-      color: $forest;
+      color: $white;
       border-color: $gold;
       transform: rotate(90deg) scale(1.05);
     }

@@ -17,18 +17,18 @@
 
   &__form {
     background: $white;
-    border: 1px solid $dusty-light;
-    border-radius: 12px;
-    padding: 32px;
-    box-shadow: $shadow;
+    border: 1px solid rgba($gold, 0.15); // Golden luxury border
+    border-radius: 16px; // Standardized border radius
+    padding: 36px 32px;
+    box-shadow: $shadow-premium;
 
     @media (max-width: $bp-sm) {
-      padding: 20px 16px;
+      padding: 24px 16px;
     }
 
     h3 {
       font-size: 1.5rem;
-      color: $forest;
+      color: $maroon-dark;
       margin-bottom: 6px;
       font-family: $font-serif;
       font-weight: 700;
@@ -52,10 +52,10 @@
 
   &__success {
     padding: 14px 18px;
-    background: rgba(4, 120, 87, 0.08);
-    border: 1px solid rgba(4, 120, 87, 0.3);
-    border-radius: 6px;
-    color: $forest-light;
+    background: rgba(93, 12, 29, 0.05);
+    border: 1px solid rgba(93, 12, 29, 0.2);
+    border-radius: 8px;
+    color: $maroon;
     font-size: 0.88rem;
     margin-bottom: 20px;
     font-weight: 500;
@@ -65,7 +65,7 @@
     padding: 14px 18px;
     background: rgba(225, 29, 72, 0.08);
     border: 1px solid rgba(225, 29, 72, 0.25);
-    border-radius: 6px;
+    border-radius: 8px;
     color: #e11d48;
     font-size: 0.88rem;
     margin-bottom: 20px;
@@ -74,11 +74,11 @@
 
   &__confirm-btn {
     width: 100%;
-    padding: 16px;
+    padding: 16px 24px;
     background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
     color: $white;
     border: none;
-    border-radius: 8px;
+    border-radius: 50px; // Pill shape WhatsApp button
     font-family: $font-sans;
     font-size: 0.95rem;
     font-weight: 700;
@@ -92,15 +92,12 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    outline: none;
 
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
       filter: brightness(1.05);
-    }
-
-    &:active {
-      transform: translateY(0);
     }
   }
 }
@@ -108,10 +105,10 @@
 // ─── CALENDAR ─────────────────────────────────────────────────────────────────
 .cal {
   background: $white;
-  border: 1px solid $dusty-light;
-  border-radius: 12px;
+  border: 1px solid rgba($gold, 0.15);
+  border-radius: 16px; // Standardized border radius
   padding: 32px;
-  box-shadow: $shadow;
+  box-shadow: $shadow-premium;
 
   @media (max-width: $bp-sm) {
     padding: 20px 14px;
@@ -151,7 +148,7 @@
 
     h3 {
       font-size: 1.3rem;
-      color: $forest;
+      color: $maroon-dark;
       font-family: $font-serif;
       font-weight: 700;
     }
@@ -159,8 +156,8 @@
 
   &__nav {
     background: none;
-    border: 1px solid rgba($forest-light, 0.3);
-    color: $forest-light;
+    border: 1px solid rgba($maroon, 0.3);
+    color: $maroon;
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -170,16 +167,13 @@
     align-items: center;
     justify-content: center;
     transition: $transition-smooth;
+    outline: none;
 
     &:hover {
-      background: $forest-light;
+      background: $maroon;
       color: $white;
-      border-color: $forest-light;
+      border-color: $maroon;
       transform: scale(1.08);
-    }
-    
-    &:active {
-      transform: scale(0.95);
     }
   }
 
@@ -212,7 +206,7 @@
     align-items: center;
     justify-content: center;
     font-size: 0.88rem;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     transition: $transition-smooth;
     color: $text-dark;
@@ -232,37 +226,37 @@
         content: "";
         position: absolute;
         inset: 0;
-        border-radius: 6px;
+        border-radius: 8px;
         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cline x1='0' y1='10' x2='10' y2='0' stroke='rgba(220,38,38,0.15)' stroke-width='1.5'/%3E%3C/svg%3E");
       }
     }
 
     &--available {
-      background: rgba(4, 120, 87, 0.05);
-      border: 1px solid rgba(4, 120, 87, 0.15);
-      color: $forest;
+      background: rgba(197, 160, 89, 0.08); // Gold tint
+      border: 1px solid rgba(197, 160, 89, 0.2);
+      color: $maroon-dark;
 
       &:hover {
-        background: $forest-light;
-        border-color: $forest-light;
+        background: $gold;
+        border-color: $gold;
         color: $white;
-        box-shadow: $shadow-glow-forest;
+        box-shadow: $shadow-glow-gold;
         transform: translateY(-2px) scale(1.1);
       }
     }
 
     &--selected {
-      background: $forest-light;
+      background: $maroon;
       color: $white !important;
       font-weight: 700;
-      box-shadow: $shadow-glow-forest;
+      box-shadow: $shadow-glow-maroon;
       transform: translateY(-2px) scale(1.1);
-      border-color: $forest-light;
+      border-color: $maroon;
     }
 
     &--today {
-      border: 1.5px solid $forest-light;
-      color: $forest-light;
+      border: 1.5px solid $maroon;
+      color: $maroon;
       font-weight: 600;
     }
   }
@@ -293,11 +287,11 @@
       border: 1px solid rgba(220, 38, 38, 0.3);
     }
     &--available {
-      background: rgba(4, 120, 87, 0.5);
-      border: 1px solid rgba(4, 120, 87, 0.3);
+      background: rgba(197, 160, 89, 0.5);
+      border: 1px solid rgba(197, 160, 89, 0.3);
     }
     &--selected {
-      background: $forest-light;
+      background: $maroon;
     }
   }
 }
