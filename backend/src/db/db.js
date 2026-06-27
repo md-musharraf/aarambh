@@ -56,6 +56,22 @@ const connectDB = async () => {
     // Recreate the correct unique index
     await BookingCollection.createIndex({ eventDate: 1 }, { unique: true });
     console.log("Created unique index on eventDate");
+
+    // Seed default admin if none exists
+    const adminAuthModel = require("../models/adminAuth.model");
+    const { ADMIN_PHONE, ADMIN_PASSWORD } = require("../config/admin.credentials");
+    const adminCount = await adminAuthModel.countDocuments();
+    if (adminCount === 0) {
+      console.log("No admins found in database. Seeding default admin...");
+      const defaultAdmin = new adminAuthModel({
+        phone: ADMIN_PHONE,
+        password: ADMIN_PASSWORD
+      });
+      await defaultAdmin.save();
+      console.log(`Default admin seeded successfully with phone: ${ADMIN_PHONE}`);
+    } else {
+      console.log(`Admins exist in the database (count: ${adminCount}). Skipping seed.`);
+    }
   } catch (error) {
     console.error("MongoDB connection error:", error);
     process.exit(1);
