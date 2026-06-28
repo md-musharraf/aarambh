@@ -1,8 +1,18 @@
 const express = require("express");
 const adminAuthModel = require("../models/adminAuth.model");
 const crypto = require("crypto");
+const rateLimit = require("express-rate-limit");
 const verifyAdmin = require("../middleware/adminAuth");
 const router = express.Router();
+
+// Rate limiter for admin login to prevent brute force attacks (max 5 requests per 15 mins)
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  message: { message: "Too many login attempts, please try again after 15 minutes" },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // POST /api/admin/register — create a new admin
 router.post("/admin/register", async (req, res) => {
@@ -15,21 +25,23 @@ router.post("/admin/register", async (req, res) => {
 });
 
 // POST /api/admin/login
-router.post("/admin/login", async (req, res) => {
-  const { phone, password } = req.body;
+router.post("/admin/login", loginLimiter, async (req, res) => {
+  // Sanitize input to prevent NoSQL injection
+  const phoneStr = String(req.body.phone || "").trim();
+  const passwordStr = String(req.body.password || "");
 
-  if (!phone || !password) {
+  if (!phoneStr || !passwordStr) {
     return res.status(400).json({ message: "Phone and password are required" });
   }
 
   try {
-    const admin = await adminAuthModel.findOne({ phone });
+    const admin = await adminAuthModel.findOne({ phone: phoneStr });
 
     if (!admin) {
       return res.status(404).json({ message: "Admin not found" });
     }
 
-    if (admin.password !== password) {
+    if (admin.password !== passwordStr) {
       return res.status(401).json({ message: "Invalid password" });
     }
 

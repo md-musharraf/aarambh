@@ -1,9 +1,15 @@
 const express = require("express");
+const helmet = require("helmet");
 const imageRouter = require("./router/image.route");
 const bookingRouter = require("./router/booking.route");
 const adminRouter = require("./router/adminAuth.route");
 const app = express();
 const cors = require("cors");
+
+// Secure HTTP response headers
+app.use(helmet({
+  contentSecurityPolicy: false // Disable CSP to avoid blocking external assets like ImageKit
+}));
 
 app.use(
   cors({
