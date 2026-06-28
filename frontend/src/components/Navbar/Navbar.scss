@@ -23,7 +23,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 24px;
-    height: 70px;
+    height: 80px;
   }
 
   &__logo {
@@ -37,7 +37,7 @@
     }
 
     &-img {
-      height: 52px; // Fits perfectly inside 70px header height
+      height: 60px; // Larger header logo
       width: auto;
       object-fit: contain;
       display: block;
@@ -174,7 +174,7 @@
     @media (max-width: $bp-md) {
       display: flex;
       position: fixed;
-      top: 70px;
+      top: 80px;
       left: 0;
       right: 0;
       bottom: 0;
