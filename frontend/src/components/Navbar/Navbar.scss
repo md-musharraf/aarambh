@@ -16,6 +16,11 @@
     background: rgba(245, 245, 244, 0.92);
   }
 
+  &--hidden {
+    transform: translateY(-100%);
+    box-shadow: none !important;
+  }
+
   &__inner {
     max-width: 1200px;
     margin: 0 auto;

@@ -16,12 +16,29 @@ const navItems = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    let lastScrollY = window.scrollY;
+
+    const onScroll = () => {
+      if (open) return;
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 10);
+
+      // Hide navbar if scrolling down past 70px, show if scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 70) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [open]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -34,7 +51,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className={`navbar${scrolled ? " navbar--scrolled" : ""}`}>
+      <header className={`navbar${scrolled ? " navbar--scrolled" : ""}${hidden ? " navbar--hidden" : ""}`}>
         <nav className="navbar__inner">
           <Link
             to="/"
