@@ -18,6 +18,17 @@ const MONTH_NAMES = [
   "December",
 ];
 
+const getOptimizedUrl = (url) => {
+  if (!url) return "";
+  if (url.includes("ik.imagekit.io") && !url.includes("/tr:")) {
+    const match = url.match(/(ik\.imagekit\.io\/[^/]+)/);
+    if (match) {
+      return url.replace(match[0], `${match[0]}/tr:w-300`); // Thumbnail for admin preview grid
+    }
+  }
+  return url;
+};
+
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState(null);
@@ -326,7 +337,7 @@ const AdminDashboard = () => {
                     />
                   ) : (
                     <img
-                      src={item.image}
+                      src={getOptimizedUrl(item.image)}
                       alt={item.event}
                     />
                   )}

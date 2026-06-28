@@ -7,6 +7,28 @@ import "./Gallery.scss";
 const PAGE_SIZE = 9;
 const CATEGORIES = ["All", "Wedding", "Reception", "Birthday Party", "Corporate Event"];
 
+const getOptimizedUrl = (url) => {
+  if (!url) return "";
+  if (url.includes("ik.imagekit.io") && !url.includes("/tr:")) {
+    const match = url.match(/(ik\.imagekit\.io\/[^/]+)/);
+    if (match) {
+      return url.replace(match[0], `${match[0]}/tr:w-800`);
+    }
+  }
+  return url;
+};
+
+const getLightboxOptimizedUrl = (url) => {
+  if (!url) return "";
+  if (url.includes("ik.imagekit.io") && !url.includes("/tr:")) {
+    const match = url.match(/(ik\.imagekit\.io\/[^/]+)/);
+    if (match) {
+      return url.replace(match[0], `${match[0]}/tr:w-1600`);
+    }
+  }
+  return url;
+};
+
 const Gallery = () => {
   const [mediaItems, setMediaItems] = useState([]);
   const [total, setTotal] = useState(0);
@@ -131,7 +153,7 @@ const Gallery = () => {
             ) : (
               <img
                 className="gallery__media"
-                src={item.image}
+                src={getOptimizedUrl(item.image)}
                 alt={item.event}
                 loading="lazy"
               />
@@ -191,7 +213,7 @@ const Gallery = () => {
           ) : (
             <img
               className="gallery__lightbox-media"
-              src={lightbox.src}
+              src={getLightboxOptimizedUrl(lightbox.src)}
               alt={lightbox.alt}
             />
           )}
