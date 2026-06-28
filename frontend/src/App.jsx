@@ -56,7 +56,14 @@ const App = () => {
   useEffect(() => {
     if (isAdminRoute) return undefined;
 
-    // Initialize luxury Lenis smooth scroll
+    // Skip Lenis smooth scroll on mobile/touch devices to prevent ScrollTrigger/IntersectionObserver scroll freeze
+    const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0 || window.innerWidth < 1024;
+    if (isTouchDevice) {
+      window.lenis = null;
+      return undefined;
+    }
+
+    // Initialize luxury Lenis smooth scroll for desktop
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // ease-out-expo
