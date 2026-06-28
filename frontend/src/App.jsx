@@ -127,7 +127,7 @@ const App = () => {
       )}
       <ScrollToAnchor />
 
-      <main style={isAdminRoute ? {} : { paddingTop: "80px" }}>
+      <main style={isAdminRoute ? {} : { paddingTop: "70px" }}>
         <AppRoutes />
       </main>
 

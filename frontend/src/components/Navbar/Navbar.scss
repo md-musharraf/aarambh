@@ -23,12 +23,15 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 24px;
-    height: 80px;
+    height: 70px; // Original navbar height
   }
 
   &__logo {
     display: flex;
     align-items: center;
+    position: relative;
+    width: 180px; // Reserve horizontal space for logo
+    height: 100%;
     margin-right: auto;
     transition: transform 0.3s;
 
@@ -37,10 +40,15 @@
     }
 
     &-img {
-      height: 60px; // Larger header logo
+      height: 110px; // Scaled up logo (independent of navbar height)
       width: auto;
       object-fit: contain;
       display: block;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none; // Let clicks pass through to Link
     }
   }
   
@@ -174,7 +182,7 @@
     @media (max-width: $bp-md) {
       display: flex;
       position: fixed;
-      top: 80px;
+      top: 70px;
       left: 0;
       right: 0;
       bottom: 0;
