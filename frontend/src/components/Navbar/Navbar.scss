@@ -35,6 +35,10 @@
     margin-right: auto;
     transition: transform 0.3s;
 
+    @media (max-width: $bp-md) {
+      width: 140px; // Slightly narrower on mobile
+    }
+
     &:hover {
       transform: scale(1.02);
     }
@@ -49,6 +53,10 @@
       top: 50%;
       transform: translateY(-50%);
       pointer-events: none; // Let clicks pass through to Link
+
+      @media (max-width: $bp-md) {
+        height: 80px; // Slightly smaller on mobile viewports
+      }
     }
   }
   
