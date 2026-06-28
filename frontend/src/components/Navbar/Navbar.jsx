@@ -40,7 +40,11 @@ const Navbar = () => {
             to="/"
             className="navbar__logo"
           >
-            Aarambh<span>BANQUET</span>
+            <img
+              src="https://ik.imagekit.io/ts2hm0adf/aarambh-banquet-ranchi/aarambh_logo.png"
+              alt="Aarambh Banquet Logo"
+              className="navbar__logo-img"
+            />
           </Link>
 
           <ul className="navbar__links">

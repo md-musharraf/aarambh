@@ -27,29 +27,20 @@
   }
 
   &__logo {
-    font-family: $font-serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: $maroon; // Deep Maroon branding
-    letter-spacing: 0.5px;
-    text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 4px;
     margin-right: auto;
-    white-space: nowrap;
     transition: transform 0.3s;
 
     &:hover {
       transform: scale(1.02);
     }
 
-    span {
-      color: $gold; // Gold BANQUET text
-      font-weight: 400;
-      font-size: 1.1rem;
-      letter-spacing: 2px;
-      margin-left: 4px;
+    &-img {
+      height: 52px; // Fits perfectly inside 70px header height
+      width: auto;
+      object-fit: contain;
+      display: block;
     }
   }
   

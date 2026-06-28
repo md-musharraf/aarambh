@@ -10,7 +10,11 @@ const Footer = () => (
           to="/"
           className="footer__logo"
         >
-          Aarambh Banquet
+          <img
+            src="https://ik.imagekit.io/ts2hm0adf/aarambh-banquet-ranchi/aarambh_logo.png"
+            alt="Aarambh Banquet Logo"
+            className="footer__logo-img"
+          />
         </Link>
         <p>
           A premium event venue in Ranchi, Jharkhand — the perfect setting for weddings,
