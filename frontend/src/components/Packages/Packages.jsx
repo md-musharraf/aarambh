@@ -80,8 +80,6 @@ const Packages = () => {
           >
             {badge && <div className="packages__badge">{badge}</div>}
             <div className="packages__name">{name}</div>
-            <div className="packages__price">{price}</div>
-            <div className="packages__per">{per}</div>
 
             <ul className="packages__features">
               {features.map(({ ok, text }) => (
