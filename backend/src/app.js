@@ -16,6 +16,8 @@ app.use(
         "https://the-city-garden.vercel.app",
         "https://aarambh-banquet-ranchi.vercel.app",
         "https://aarambh-ecru.vercel.app",
+        "https://aarambhbanquetranchi.com",
+        "https://www.aarambhbanquetranchi.com",
       ];
 
       // Allow any Vercel preview URL for this project
