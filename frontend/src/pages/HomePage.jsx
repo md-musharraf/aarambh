@@ -64,10 +64,10 @@ const homeSchema = {
         },
         {
           "@type": "Question",
-          "name": "Do you have separate kitchens for Veg and Non-Veg food?",
+          "name": "Do you provide catering services or allow outside caterers?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, we prioritize traditional and cultural preferences. We have strictly segregated, completely independent kitchens for preparing vegetarian and non-vegetarian cuisines."
+            "text": "We offer spacious kitchen facilities for outside catering teams, giving you the flexibility to bring your preferred caterer for your event."
           }
         },
         {

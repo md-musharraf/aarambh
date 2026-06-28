@@ -151,7 +151,7 @@ const Packages = () => {
                 <td>Dedicated Event Planner</td>
               </tr>
               <tr>
-                <td><strong>Separate Kitchens (Veg/Non-Veg)</strong></td>
+                <td><strong>Spacious Kitchen Facilities</strong></td>
                 <td>Included</td>
                 <td>Included</td>
                 <td>Included + Dining Service</td>

@@ -11,8 +11,8 @@ const faqs = [
     answer: "Aarambh Banquet can comfortably host intimate gatherings to grand celebrations of 500+ guests, utilizing our spacious air-conditioned indoor hall and lush open-air garden lawn."
   },
   {
-    question: "Do you have separate kitchens for Veg and Non-Veg food?",
-    answer: "Yes, we prioritize traditional and cultural preferences. We have strictly segregated, completely independent kitchens for preparing vegetarian and non-vegetarian cuisines."
+    question: "Do you provide catering services or allow outside caterers?",
+    answer: "We offer spacious kitchen facilities for outside catering teams, giving you the flexibility to bring your preferred caterer for your event."
   },
   {
     question: "Is there sufficient parking space available at the venue?",

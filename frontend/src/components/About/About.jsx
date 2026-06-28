@@ -15,8 +15,8 @@ const badges = [
   },
   {
     icon: <FaUtensils />,
-    title: "Veg & Non-Veg",
-    desc: "Dedicated separate kitchens for prep.",
+    title: "Fine Catering",
+    desc: "Spacious kitchen space for caterers.",
   },
   {
     icon: <FaParking />,
