@@ -1,25 +1,33 @@
 @use "../../styles/variables" as *;
 
-.admin-dashboard {
-  max-width: 1000px;
-  margin: 90px auto 40px;
-  padding: 40px;
-  width: 100%;
-  background: $glass-bg-dark;
-  backdrop-filter: $glass-blur;
-  border: 1px solid rgba($gold, 0.3);
-  border-radius: 12px;
-  color: $cream;
+.admin-dashboard-layout {
+  min-height: 100vh;
+  background: 
+    linear-gradient(rgba(28, 2, 6, 0.05) 0%, rgba(28, 2, 6, 0.08) 100%),
+    linear-gradient(180deg, $cream 0%, $cream-dark 100%);
+  padding: 40px 24px;
   box-sizing: border-box;
-  box-shadow: $shadow-premium, 0 10px 40px rgba($gold, 0.08);
 
-  h2 {
-    font-size: 2.2rem;
-    margin-bottom: 35px;
-    text-align: center;
-    color: $gold-light;
-    font-family: $font-serif;
-    font-weight: 700;
+  @media (max-width: $bp-sm) {
+    padding: 24px 12px;
+  }
+}
+
+.admin-dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  background: $white;
+  border: 1px solid rgba($gold, 0.25);
+  border-radius: 20px;
+  color: $text-dark;
+  box-shadow: 0 15px 45px rgba(93, 12, 29, 0.06), $shadow-premium;
+  padding: 40px;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 24px;
+    border-radius: 16px;
   }
 }
 
@@ -27,33 +35,41 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
   border-bottom: 1px solid rgba($gold, 0.15);
-  padding-bottom: 20px;
-  margin-bottom: 35px;
+  padding-bottom: 24px;
+  margin-bottom: 30px;
 
   h2 {
-    margin-bottom: 0;
-    text-align: left;
+    font-size: 2rem;
+    color: $maroon-dark;
+    font-family: $font-serif;
+    font-weight: 700;
+    margin: 0;
+    
+    @media (max-width: $bp-sm) {
+      font-size: 1.5rem;
+    }
   }
 }
 
 .admin-dashboard__logout {
-  border: 1px solid rgba($gold, 0.4);
-  background: rgba($white, 0.05);
-  color: $gold-light;
-  border-radius: 6px;
-  padding: 10px 20px;
+  border: 1px solid $maroon;
+  background: transparent;
+  color: $maroon;
+  border-radius: 50px;
+  padding: 10px 24px;
   cursor: pointer;
   font-weight: 600;
   font-family: $font-sans;
+  font-size: 0.88rem;
   transition: $transition-smooth;
 
   &:hover {
-    background: $gold;
-    color: $dark-bg;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba($gold, 0.25);
+    background: $maroon;
+    color: $white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba($maroon, 0.2);
   }
   
   &:active {
@@ -61,27 +77,110 @@
   }
 }
 
-.admin-section {
-  margin-bottom: 35px;
-  padding: 32px;
-  background: rgba($white, 0.02);
-  border: 1px solid rgba($gold, 0.15);
-  border-radius: 10px;
-  max-width: 100%;
-  box-sizing: border-box;
-  transition: $transition-smooth;
+// Tab Switching Controls
+.admin-dashboard__tabs {
+  display: flex;
+  gap: 12px;
+  border-bottom: 2px solid $dusty-light;
+  margin-bottom: 32px;
+  padding-bottom: 2px;
+  flex-wrap: wrap;
 
-  &:hover {
-    border-color: rgba($gold, 0.3);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  @media (max-width: $bp-sm) {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+}
+
+.admin-dashboard__tab-btn {
+  padding: 12px 28px;
+  border: none;
+  background: transparent;
+  color: $text-mid;
+  font-family: $font-sans;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  position: relative;
+  transition: $transition-smooth;
+  border-radius: 8px 8px 0 0;
+
+  @media (max-width: $bp-sm) {
+    padding: 10px 16px;
+    font-size: 0.88rem;
+    flex-grow: 1;
+    text-align: center;
   }
 
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: $maroon;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    color: $maroon;
+    background: rgba($maroon, 0.03);
+  }
+
+  &.active {
+    color: $maroon-dark;
+    background: rgba($maroon, 0.05);
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+// Responsive Grid Columns
+.admin-grid-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.admin-col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    gap: 24px;
+  }
+}
+
+// Admin Panels
+.admin-section {
+  background: $white;
+  border: 1px solid rgba($gold, 0.15);
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.02);
+  box-sizing: border-box;
+  width: 100%;
+
   h3 {
-    font-size: 1.3rem;
-    margin-bottom: 22px;
-    color: $gold-light;
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    color: $maroon-dark;
     font-family: $font-serif;
     font-weight: 700;
+    border-left: 3px solid $gold;
+    padding-left: 12px;
   }
 
   form {
@@ -91,44 +190,46 @@
   }
 
   input,
-  select {
-    padding: 14px 16px;
-    background: rgba($white, 0.05);
-    border: 1px solid rgba($gold, 0.25);
-    border-radius: 6px;
-    color: $cream;
-    font-family: inherit;
-    font-size: 0.95rem;
+  select,
+  textarea {
+    padding: 12px 16px;
+    background: $cream;
+    border: 1px solid $dusty-light;
+    border-radius: 8px;
+    color: $text-dark;
+    font-family: $font-sans;
+    font-size: 0.92rem;
     transition: $transition-smooth;
 
     &::placeholder {
-      color: rgba($cream, 0.45);
+      color: rgba($text-mid, 0.4);
     }
 
     &:focus {
       outline: none;
-      border-color: $gold-light;
-      background: rgba($white, 0.08);
-      box-shadow: 0 0 15px rgba($gold, 0.15);
+      border-color: $gold;
+      background: $white;
+      box-shadow: 0 0 0 3px rgba($gold, 0.15);
     }
   }
 
   button {
-    padding: 14px 24px;
-    background: linear-gradient(135deg, $gold 0%, $gold-light 100%);
-    color: $dark-bg;
+    padding: 12px 24px;
+    background: $maroon;
+    color: $white;
     border: none;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 0.95rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-family: $font-sans;
+    font-size: 0.92rem;
     cursor: pointer;
     transition: $transition-smooth;
-    box-shadow: 0 4px 12px rgba($gold, 0.25);
+    box-shadow: 0 4px 12px rgba(93, 12, 29, 0.15);
 
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba($gold, 0.4);
-      filter: brightness(1.05);
+      background: $maroon-dark;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(93, 12, 29, 0.25);
     }
 
     &:active {
@@ -137,163 +238,144 @@
   }
 }
 
-// Upload Form
-.upload-form {
-  .file-input-wrapper {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-  }
-
-  .file-input {
-    display: none;
-  }
-
-  .file-label {
-    display: block;
-    padding: 18px 14px;
-    background: rgba($white, 0.03);
-    border: 2px dashed rgba($gold, 0.35);
-    border-radius: 6px;
-    color: $cream;
-    text-align: center;
-    cursor: pointer;
-    transition: $transition-smooth;
-    font-weight: 500;
-
-    &:hover {
-      border-color: $gold-light;
-      background: rgba($gold, 0.08);
-      color: $gold-light;
-    }
-  }
-
-  .preview {
-    margin: 12px 0;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid rgba($gold, 0.25);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-
-    img,
-    video {
-      width: 100%;
-      height: auto;
-      display: block;
-      max-height: 320px;
-      object-fit: cover;
-    }
-  }
-}
-
-// Media Manager (New Feature)
+// Media Grid Manager inside Dashboard
 .media-mgr-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 20px;
-  max-height: 420px;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 16px;
+  max-height: 520px;
   overflow-y: auto;
-  padding: 8px;
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba($gold, 0.1);
+  padding: 4px;
+  border-radius: 10px;
+  background: $cream;
+  border: 1px solid $dusty-light;
 
   &::-webkit-scrollbar {
     width: 6px;
   }
   &::-webkit-scrollbar-track {
-    background: rgba($white, 0.02);
+    background: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background: $gold;
+    background: rgba($gold, 0.4);
     border-radius: 3px;
-  }
-
-  @media (max-width: $bp-sm) {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 12px;
+    
+    &:hover {
+      background: rgba($gold, 0.6);
+    }
   }
 }
 
 .media-mgr-card {
-  background: rgba($white, 0.04);
-  border: 1px solid rgba($gold, 0.15);
-  border-radius: 8px;
+  background: $white;
+  border: 1px solid $dusty-light;
+  border-radius: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.03);
   transition: $transition-smooth;
 
   &:hover {
-    border-color: rgba($gold, 0.4);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border-color: $gold;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(93, 12, 29, 0.08);
   }
 }
 
 .media-mgr-preview {
   position: relative;
-  aspect-ratio: 16/11;
+  aspect-ratio: 1;
   overflow: hidden;
-  background: #000;
+  background: #111;
 
   img, video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: $transition-smooth;
-  }
-  
-  &:hover img, &:hover video {
-    transform: scale(1.05);
+    display: block;
   }
 }
 
 .media-mgr-tag {
   position: absolute;
-  top: 8px;
-  left: 8px;
-  background: rgba($dark-bg, 0.85);
+  top: 6px;
+  left: 6px;
+  background: rgba($maroon-dark, 0.85);
   border: 1px solid rgba($gold, 0.3);
-  color: $gold-light;
-  padding: 3px 8px;
-  font-size: 0.68rem;
-  font-weight: 600;
-  border-radius: 4px;
+  color: $white;
+  padding: 2px 6px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  border-radius: 3px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   z-index: 2;
 }
 
 .media-mgr-delete-btn {
-  background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%) !important;
+  background: #e11d48 !important;
   color: $white !important;
-  padding: 10px 12px !important;
-  font-size: 0.8rem !important;
-  font-weight: 700 !important;
-  border-radius: 0 0 7px 7px !important;
+  padding: 8px 10px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  border-radius: 0 0 9px 9px !important;
   width: 100% !important;
   box-shadow: none !important;
   border: none !important;
   transform: none !important;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
 
   &:hover {
-    background: #e53935 !important;
-    transform: none !important;
-    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.4) !important;
+    background: #be123c !important;
   }
 }
 
-// Calendar Styles
+// Upload file styling
+.upload-form {
+  .file-label {
+    display: block;
+    padding: 24px 16px;
+    background: $cream;
+    border: 2px dashed rgba($gold, 0.4);
+    border-radius: 10px;
+    color: $text-mid;
+    text-align: center;
+    cursor: pointer;
+    transition: $transition-smooth;
+    font-weight: 500;
+    font-size: 0.88rem;
+
+    &:hover {
+      border-color: $maroon;
+      background: rgba($maroon, 0.03);
+      color: $maroon-dark;
+    }
+  }
+
+  .preview {
+    margin-top: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid $dusty-light;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+    img,
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+      max-height: 260px;
+      object-fit: cover;
+    }
+  }
+}
+
+// Calendar styling inside dashboard
 .calendar-wrapper {
-  background: rgba(0, 0, 0, 0.15);
+  background: $cream;
   padding: 20px;
-  border-radius: 8px;
-  border: 1px solid rgba($gold, 0.15);
-  overflow: hidden;
-  max-width: 100%;
+  border-radius: 10px;
+  border: 1px solid $dusty-light;
   box-sizing: border-box;
 }
 
@@ -301,155 +383,140 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 
   h4 {
-    font-size: 1.15rem;
-    color: $gold-light;
+    font-size: 1.1rem;
+    color: $maroon-dark;
     font-family: $font-serif;
     font-weight: 700;
     margin: 0;
   }
 
   button {
-    width: 36px;
-    height: 36px;
-    padding: 0;
-    background: rgba($gold, 0.12);
-    border: 1px solid rgba($gold, 0.3);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $white;
+    border: 1px solid $dusty-light;
     border-radius: 50%;
-    color: $gold;
+    color: $maroon;
     cursor: pointer;
     font-size: 1.1rem;
     transition: $transition-smooth;
     box-shadow: none;
 
     &:hover {
-      background: $gold;
-      color: $dark-bg;
-      transform: scale(1.08);
-      box-shadow: 0 4px 10px rgba($gold, 0.2);
+      background: $maroon;
+      color: $white;
+      border-color: $maroon;
+      transform: scale(1.05);
     }
   }
 }
 
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
   margin-bottom: 16px;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
 }
 
 .calendar-day-header {
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  color: $gold-light;
-  padding: 8px 0;
-  min-width: 0;
+  color: $text-mid;
+  padding: 6px 0;
   text-transform: uppercase;
-  opacity: 0.8;
 }
 
 .calendar-day {
   aspect-ratio: 1;
   padding: 0;
-  background: rgba($gold, 0.1);
-  border: 1px solid rgba($gold, 0.2);
+  background: $white;
+  border: 1px solid $dusty-light;
   border-radius: 6px;
-  color: $cream;
+  color: $text-dark;
   cursor: pointer;
   font-weight: 600;
+  font-size: 0.88rem;
   transition: $transition-smooth;
-  width: 100%;
-  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: none;
 
   &:hover {
-    background: rgba($gold, 0.25);
+    background: rgba($gold, 0.2);
     border-color: $gold;
-    color: $gold-light;
-    box-shadow: 0 0 10px rgba($gold, 0.2);
-    transform: translateY(-2px) scale(1.08);
+    transform: translateY(-1px);
   }
 
   &.booked {
-    background: rgba(229, 115, 115, 0.15);
-    border-color: rgba(229, 115, 115, 0.35);
-    color: #e57373;
+    background: rgba(225, 29, 72, 0.08);
+    border-color: rgba(225, 29, 72, 0.3);
+    color: #be123c;
     position: relative;
-    
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 6px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cline x1='0' y1='10' x2='10' y2='0' stroke='rgba(229,115,115,0.15)' stroke-width='1.5'/%3E%3C/svg%3E");
-    }
   }
 
   &.booked:hover {
-    background: rgba(229, 115, 115, 0.25);
-    border-color: rgba(229, 115, 115, 0.5);
-    transform: translateY(-2px) scale(1.08);
+    background: rgba(225, 29, 72, 0.15);
+    border-color: rgba(225, 29, 72, 0.4);
   }
-}
-
-.empty {
-  pointer-events: none;
 }
 
 .calendar-legend {
   display: flex;
-  gap: 20px;
-  font-size: 0.85rem;
-  color: rgba($cream, 0.7);
+  gap: 16px;
+  font-size: 0.82rem;
+  color: $text-mid;
   justify-content: center;
 
   > div {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
   }
 }
 
 .legend-available {
   display: inline-block;
-  width: 12px;
-  height: 12px;
-  background: rgba($gold, 0.2);
-  border: 1px solid rgba($gold, 0.35);
-  border-radius: 3px;
+  width: 10px;
+  height: 10px;
+  background: $white;
+  border: 1px solid $dusty-light;
+  border-radius: 2px;
 }
 
 .legend-booked {
   display: inline-block;
-  width: 12px;
-  height: 12px;
-  background: rgba(229, 115, 115, 0.4);
-  border: 1px solid rgba(229, 115, 115, 0.3);
-  border-radius: 3px;
+  width: 10px;
+  height: 10px;
+  background: rgba(225, 29, 72, 0.1);
+  border: 1px solid rgba(225, 29, 72, 0.3);
+  border-radius: 2px;
 }
 
-// Booked Dates List
+// Booked Dates List inside Dashboard
 .booked-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-height: 300px;
+  gap: 8px;
+  max-height: 280px;
   overflow-y: auto;
+  padding-right: 4px;
 
   &::-webkit-scrollbar {
     width: 6px;
   }
   &::-webkit-scrollbar-track {
-    background: rgba($white, 0.02);
+    background: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background: $gold;
+    background: rgba($gold, 0.4);
     border-radius: 3px;
   }
 }
@@ -458,143 +525,63 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 16px;
-  background: rgba(229, 115, 115, 0.08);
-  border: 1px solid rgba(229, 115, 115, 0.25);
-  border-radius: 6px;
+  padding: 10px 14px;
+  background: rgba($maroon, 0.03);
+  border: 1px solid $dusty-light;
+  border-radius: 8px;
 
   .date {
     font-weight: 600;
-    color: #e57373;
+    color: $maroon-dark;
+    font-size: 0.88rem;
   }
 
   .event {
-    color: rgba(229, 115, 115, 0.8);
-    font-size: 0.9rem;
+    color: $text-mid;
+    font-size: 0.82rem;
     font-weight: 500;
   }
 }
 
 .no-data {
   text-align: center;
-  color: rgba($cream, 0.5);
+  color: rgba($text-mid, 0.5);
   font-style: italic;
-  padding: 20px;
+  padding: 16px;
+  font-size: 0.88rem;
 }
 
-// Messages
+// Messages notification toast fallback
 .admin-msg {
   position: fixed;
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 16px 28px;
-  border-radius: 6px;
-  font-size: 0.95rem;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 0.9rem;
   font-weight: 600;
   z-index: 10000;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   animation: adminMsgSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 
   &.success {
-    background: rgba(80, 160, 100, 0.95);
-    border: 1px solid rgba(80, 160, 100, 0.5);
-    color: #fff;
-    backdrop-filter: blur(10px);
+    background: #0f172a;
+    border: 1px solid rgba($gold, 0.2);
+    color: $white;
   }
 
   &.error {
-    background: rgba(211, 47, 47, 0.95);
-    border: 1px solid rgba(211, 47, 47, 0.5);
+    background: #be123c;
     color: #fff;
-    backdrop-filter: blur(10px);
   }
 }
 
-@keyframes adminMsgSlideIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 20px);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
 }
 
-@media (max-width: 768px) {
-  .admin-dashboard {
-    margin: 40px 15px;
-    padding: 25px;
-  }
-
-  .admin-dashboard__top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .admin-dashboard h2 {
-    font-size: 1.8rem;
-    text-align: left;
-    margin-bottom: 0;
-  }
-
-  .admin-dashboard__logout {
-    width: 100%;
-    text-align: center;
-  }
-
-  .admin-section {
-    padding: 20px;
-  }
-
-  .calendar-grid {
-    gap: 6px;
-  }
-
-  .calendar-wrapper {
-    padding: 16px;
-  }
-
-  .calendar-header h4 {
-    font-size: 1rem;
-  }
-
-  .calendar-legend {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .booked-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-}
-
-@media (max-width: 560px) {
-  .admin-dashboard {
-    margin: 24px 12px;
-    padding: 18px;
-  }
-
-  .admin-section {
-    padding: 16px;
-  }
-
-  .calendar-grid {
-    gap: 4px;
-  }
-
-  .calendar-day,
-  .calendar-day-header {
-    font-size: 0.75rem;
-  }
-
-  .calendar-header button {
-    width: 30px;
-    height: 30px;
-    font-size: 0.95rem;
-  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }

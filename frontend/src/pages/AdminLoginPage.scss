@@ -1,66 +1,95 @@
+@use "../styles/variables" as *;
+
 .admin-login {
   min-height: 100vh;
   display: grid;
   place-items: center;
   padding: 24px;
-  background: radial-gradient(circle at 20% 20%, #21463f 0%, #0f1716 45%, #070b0a 100%);
+  background: 
+    linear-gradient(rgba(28, 2, 6, 0.94) 0%, rgba(9, 9, 11, 0.98) 100%),
+    url("https://ik.imagekit.io/ts2hm0adf/tr:w-1200/aarambh-banquet-ranchi/THE9-20_.jpg?updatedAt=1782469690532") center / cover no-repeat;
 }
 
 .admin-login__card {
   width: 100%;
   max-width: 420px;
-  padding: 28px;
-  border-radius: 12px;
-  border: 1px solid rgba(201, 150, 49, 0.35);
-  background: rgba(20, 20, 20, 0.92);
-  color: #efe1c7;
+  padding: 44px 36px;
+  border-radius: 16px;
+  border: 1px solid rgba($gold, 0.25);
+  background: $white;
+  color: $text-dark;
   display: grid;
-  gap: 10px;
+  gap: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), $shadow-premium;
 
   h2 {
-    margin: 0 0 8px;
+    margin: 0 0 12px;
     text-align: center;
-    color: #c99631;
+    color: $maroon-dark;
+    font-family: $font-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
   }
 
   label {
-    margin-top: 8px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $text-mid;
+    margin-bottom: -8px;
   }
 
   input {
-    padding: 10px 12px;
-    border-radius: 6px;
-    border: 1px solid rgba(201, 150, 49, 0.4);
-    background: rgba(255, 255, 255, 0.08);
-    color: #efe1c7;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid $dusty-light;
+    background: $cream;
+    color: $text-dark;
+    font-family: $font-sans;
+    font-size: 0.9rem;
+    transition: $transition-smooth;
+
+    &::placeholder {
+      color: rgba($text-mid, 0.4);
+    }
 
     &:focus {
       outline: none;
-      border-color: #c99631;
+      border-color: $gold;
+      background: $white;
+      box-shadow: 0 0 0 3px rgba($gold, 0.15);
     }
   }
 
   button {
     margin-top: 12px;
-    padding: 12px;
+    padding: 14px;
     border: none;
-    border-radius: 6px;
-    background: #c99631;
-    color: #1b1b1b;
+    border-radius: 50px;
+    background: $maroon;
+    color: $white;
     font-weight: 700;
+    font-family: $font-sans;
+    font-size: 0.95rem;
     cursor: pointer;
-  }
-}
+    transition: $transition-smooth;
+    box-shadow: 0 4px 12px rgba(93, 12, 29, 0.15);
 
-.admin-login__hint {
-  margin: 0;
-  color: rgba(239, 225, 199, 0.85);
-  font-size: 0.85rem;
+    &:hover {
+      background: $maroon-dark;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 15px rgba(93, 12, 29, 0.35);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
 }
 
 .admin-login__error {
   margin-top: 4px;
-  color: #ff8e8e;
+  color: #e11d48;
   font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
 }

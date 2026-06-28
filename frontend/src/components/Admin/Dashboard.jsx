@@ -45,6 +45,7 @@ const AdminDashboard = () => {
   const [calDate, setCalDate] = useState(new Date());
   const [selectedDates, setSelectedDates] = useState({});
   const [mediaItems, setMediaItems] = useState([]);
+  const [activeTab, setActiveTab] = useState("gallery");
 
   // Fetch booked dates & media on mount
   useEffect(() => {
@@ -224,234 +225,274 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="admin-dashboard">
-      <div className="admin-dashboard__top">
-        <h2>📊 Admin Dashboard</h2>
-        <button
-          className="admin-dashboard__logout"
-          onClick={handleLogout}
-        >
-          Logout
-        </button>
-      </div>
-
-      {/* Upload Image Section */}
-      <section className="admin-section">
-        <h3>📸 Upload Image</h3>
-        <form
-          onSubmit={uploadImage}
-          className="upload-form"
-        >
-          <div className="file-input-wrapper">
-            <input
-              type="file"
-              id="fileInput"
-              accept="image/*"
-              onChange={handleFileChange}
-              className="file-input"
-            />
-            <label
-              htmlFor="fileInput"
-              className="file-label"
-            >
-              Choose Image
-            </label>
-          </div>
-          {preview && (
-            <div className="preview">
-              <img
-                src={preview}
-                alt="Preview"
-              />
-            </div>
-          )}
-          <input
-            type="text"
-            placeholder="Event name (Wedding, Reception, etc.)"
-            value={eventName}
-            onChange={(e) => setEventName(e.target.value)}
-          />
-          <button type="submit">Upload Image</button>
-        </form>
-      </section>
-
-      {/* Upload Video Section */}
-      <section className="admin-section">
-        <h3>🎥 Upload Video</h3>
-        <form
-          onSubmit={uploadVideo}
-          className="upload-form"
-        >
-          <div className="file-input-wrapper">
-            <input
-              type="file"
-              id="videoInput"
-              accept="video/*"
-              onChange={handleVideoChange}
-              className="file-input"
-            />
-            <label
-              htmlFor="videoInput"
-              className="file-label"
-            >
-              Choose Video
-            </label>
-          </div>
-          {videoPreview && (
-            <div className="preview">
-              <video
-                src={videoPreview}
-                muted
-                loop
-                playsInline
-                autoPlay
-              />
-            </div>
-          )}
-          <input
-            type="text"
-            placeholder="Event name (Wedding, Reception, etc.)"
-            value={videoEventName}
-            onChange={(e) => setVideoEventName(e.target.value)}
-          />
-          <button type="submit">Upload Video</button>
-        </form>
-      </section>
-
-      {/* Manage Gallery Media Section */}
-      <section className="admin-section">
-        <h3>🖼️ Manage Gallery Media</h3>
-        {mediaItems.length > 0 ? (
-          <div className="media-mgr-grid">
-            {mediaItems.map((item) => (
-              <div
-                key={item._id}
-                className="media-mgr-card"
-              >
-                <div className="media-mgr-preview">
-                  {item.mediaType === "video" ? (
-                    <video
-                      src={item.image}
-                      muted
-                      playsInline
-                    />
-                  ) : (
-                    <img
-                      src={getOptimizedUrl(item.image)}
-                      alt={item.event}
-                    />
-                  )}
-                  <span className="media-mgr-tag">{item.event}</span>
-                </div>
-                <button
-                  type="button"
-                  className="media-mgr-delete-btn"
-                  onClick={() => deleteMedia(item._id)}
-                >
-                  Delete
-                </button>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="no-data">No media uploaded yet</p>
-        )}
-      </section>
-
-      {/* Calendar Section */}
-      <section className="admin-section">
-        <h3>📅 Manage Calendar</h3>
-        <div className="calendar-wrapper">
-          <div className="calendar-header">
-            <button onClick={() => setCalDate(new Date(year, month - 1))}>←</button>
-            <h4>
-              {MONTH_NAMES[month]} {year}
-            </h4>
-            <button onClick={() => setCalDate(new Date(year, month + 1))}>→</button>
-          </div>
-          <div className="calendar-grid">
-            {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((d) => (
-              <div
-                key={d}
-                className="calendar-day-header"
-              >
-                {d}
-              </div>
-            ))}
-            {calendarDays.map((day, idx) => {
-              if (day === null)
-                return (
-                  <div
-                    key={`empty-${idx}`}
-                    className="empty"
-                  />
-                );
-              const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-              const isBooked = selectedDates[dateStr];
-              return (
-                <button
-                  key={day}
-                  className={`calendar-day ${isBooked ? "booked" : "available"}`}
-                  onClick={() => toggleDate(dateStr)}
-                  title={isBooked ? "Click to mark available" : "Click to mark booked"}
-                >
-                  {day}
-                </button>
-              );
-            })}
-          </div>
-          <div className="calendar-legend">
-            <div>
-              <span className="legend-available" /> Available
-            </div>
-            <div>
-              <span className="legend-booked" /> Booked
-            </div>
-          </div>
+    <div className="admin-dashboard-layout">
+      <div className="admin-dashboard">
+        <div className="admin-dashboard__top">
+          <h2>📊 Admin Dashboard</h2>
+          <button
+            className="admin-dashboard__logout"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
         </div>
-      </section>
 
-      {/* Quick Book Section */}
-      <section className="admin-section">
-        <h3>⚡ Quick Book Date</h3>
-        <form onSubmit={createOffline}>
-          <input
-            type="date"
-            value={bookingDate}
-            onChange={(e) => setBookingDate(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Event name"
-            value={bookingEvent}
-            onChange={(e) => setBookingEvent(e.target.value)}
-          />
-          <button type="submit">Mark Booked</button>
-        </form>
-      </section>
+        {/* Tab Controls */}
+        <div className="admin-dashboard__tabs">
+          <button
+            className={`admin-dashboard__tab-btn${activeTab === "gallery" ? " active" : ""}`}
+            onClick={() => setActiveTab("gallery")}
+          >
+            📸 Gallery & Media
+          </button>
+          <button
+            className={`admin-dashboard__tab-btn${activeTab === "calendar" ? " active" : ""}`}
+            onClick={() => setActiveTab("calendar")}
+          >
+            📅 Calendar & Bookings
+          </button>
+        </div>
 
-      {/* Booked Dates List */}
-      <section className="admin-section">
-        <h3>📋 Booked Dates</h3>
-        {bookedDates.length > 0 ? (
-          <div className="booked-list">
-            {bookedDates.map((b, idx) => (
-              <div
-                key={idx}
-                className="booked-item"
-              >
-                <span className="date">{new Date(b.date).toLocaleDateString()}</span>
-                <span className="event">{b.event}</span>
+        {/* Tab Content: Gallery */}
+        {activeTab === "gallery" && (
+          <div className="admin-dashboard__tab-content animate-fade-in">
+            <div className="admin-grid-two-col">
+              {/* Left Column: Upload forms */}
+              <div className="admin-col">
+                {/* Upload Image Section */}
+                <section className="admin-section">
+                  <h3>📸 Upload Image</h3>
+                  <form
+                    onSubmit={uploadImage}
+                    className="upload-form"
+                  >
+                    <div className="file-input-wrapper">
+                      <input
+                        type="file"
+                        id="fileInput"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        className="file-input"
+                      />
+                      <label
+                        htmlFor="fileInput"
+                        className="file-label"
+                      >
+                        {file ? `Selected: ${file.name}` : "Choose Image"}
+                      </label>
+                    </div>
+                    {preview && (
+                      <div className="preview">
+                        <img
+                          src={preview}
+                          alt="Preview"
+                        />
+                      </div>
+                    )}
+                    <input
+                      type="text"
+                      placeholder="Event name (Wedding, Reception, etc.)"
+                      value={eventName}
+                      onChange={(e) => setEventName(e.target.value)}
+                    />
+                    <button type="submit">Upload Image</button>
+                  </form>
+                </section>
+
+                {/* Upload Video Section */}
+                <section className="admin-section">
+                  <h3>🎥 Upload Video</h3>
+                  <form
+                    onSubmit={uploadVideo}
+                    className="upload-form"
+                  >
+                    <div className="file-input-wrapper">
+                      <input
+                        type="file"
+                        id="videoInput"
+                        accept="video/*"
+                        onChange={handleVideoChange}
+                        className="file-input"
+                      />
+                      <label
+                        htmlFor="videoInput"
+                        className="file-label"
+                      >
+                        {videoFile ? `Selected: ${videoFile.name}` : "Choose Video"}
+                      </label>
+                    </div>
+                    {videoPreview && (
+                      <div className="preview">
+                        <video
+                          src={videoPreview}
+                          muted
+                          loop
+                          playsInline
+                          autoPlay
+                        />
+                      </div>
+                    )}
+                    <input
+                      type="text"
+                      placeholder="Event name (Wedding, Reception, etc.)"
+                      value={videoEventName}
+                      onChange={(e) => setVideoEventName(e.target.value)}
+                    />
+                    <button type="submit">Upload Video</button>
+                  </form>
+                </section>
               </div>
-            ))}
-          </div>
-        ) : (
-          <p className="no-data">No booked dates yet</p>
-        )}
-      </section>
 
-      {/* Message */}
-      {msg && <div className={`admin-msg ${msgType}`}>{msg}</div>}
+              {/* Right Column: Manage media */}
+              <div className="admin-col">
+                <section className="admin-section">
+                  <h3>🖼️ Manage Gallery Media</h3>
+                  {mediaItems.length > 0 ? (
+                    <div className="media-mgr-grid">
+                      {mediaItems.map((item) => (
+                        <div
+                          key={item._id}
+                          className="media-mgr-card"
+                        >
+                          <div className="media-mgr-preview">
+                            {item.mediaType === "video" ? (
+                              <video
+                                src={item.image}
+                                muted
+                                playsInline
+                              />
+                            ) : (
+                              <img
+                                src={getOptimizedUrl(item.image)}
+                                alt={item.event}
+                              />
+                            )}
+                            <span className="media-mgr-tag">{item.event}</span>
+                          </div>
+                          <button
+                            type="button"
+                            className="media-mgr-delete-btn"
+                            onClick={() => deleteMedia(item._id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="no-data">No media uploaded yet</p>
+                  )}
+                </section>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab Content: Calendar */}
+        {activeTab === "calendar" && (
+          <div className="admin-dashboard__tab-content animate-fade-in">
+            <div className="admin-grid-two-col">
+              {/* Left Column: Calendar visualizer */}
+              <div className="admin-col">
+                <section className="admin-section">
+                  <h3>📅 Manage Calendar</h3>
+                  <div className="calendar-wrapper">
+                    <div className="calendar-header">
+                      <button onClick={() => setCalDate(new Date(year, month - 1))}>←</button>
+                      <h4>
+                        {MONTH_NAMES[month]} {year}
+                      </h4>
+                      <button onClick={() => setCalDate(new Date(year, month + 1))}>→</button>
+                    </div>
+                    <div className="calendar-grid">
+                      {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((d) => (
+                        <div
+                          key={d}
+                          className="calendar-day-header"
+                        >
+                          {d}
+                        </div>
+                      ))}
+                      {calendarDays.map((day, idx) => {
+                        if (day === null)
+                          return (
+                            <div
+                              key={`empty-${idx}`}
+                              className="empty"
+                            />
+                          );
+                        const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+                        const isBooked = selectedDates[dateStr];
+                        return (
+                          <button
+                            key={day}
+                            className={`calendar-day ${isBooked ? "booked" : "available"}`}
+                            onClick={() => toggleDate(dateStr)}
+                            title={isBooked ? "Click to mark available" : "Click to mark booked"}
+                          >
+                            {day}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <div className="calendar-legend">
+                      <div>
+                        <span className="legend-available" /> Available
+                      </div>
+                      <div>
+                        <span className="legend-booked" /> Booked
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              {/* Right Column: Quick Book and Booked Dates List */}
+              <div className="admin-col">
+                <section className="admin-section">
+                  <h3>⚡ Quick Book Date</h3>
+                  <form onSubmit={createOffline}>
+                    <input
+                      type="date"
+                      value={bookingDate}
+                      onChange={(e) => setBookingDate(e.target.value)}
+                    />
+                    <input
+                      type="text"
+                      placeholder="Event name"
+                      value={bookingEvent}
+                      onChange={(e) => setBookingEvent(e.target.value)}
+                    />
+                    <button type="submit">Mark Booked</button>
+                  </form>
+                </section>
+
+                <section className="admin-section">
+                  <h3>📋 Booked Dates</h3>
+                  {bookedDates.length > 0 ? (
+                    <div className="booked-list">
+                      {bookedDates.map((b, idx) => (
+                        <div
+                          key={idx}
+                          className="booked-item"
+                        >
+                          <span className="date">{new Date(b.date).toLocaleDateString()}</span>
+                          <span className="event">{b.event}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="no-data">No booked dates yet</p>
+                  )}
+                </section>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Message */}
+        {msg && <div className={`admin-msg ${msgType}`}>{msg}</div>}
+      </div>
     </div>
   );
 };
