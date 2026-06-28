@@ -49,5 +49,13 @@ app.use("/api", imageRouter);
 app.use("/api", bookingRouter);
 app.use("/api", adminRouter);
 
+// Global error handler middleware
+app.use((err, req, res, next) => {
+  console.error("Unhandled server error:", err.message || err, err.stack || "");
+  res.status(err.status || 500).json({
+    message: err.message || "Internal server error occurred",
+  });
+});
+
 module.exports = app;
 

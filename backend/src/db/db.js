@@ -12,20 +12,27 @@ const connectDB = async () => {
     const Booking = require("../models/booking.model");
     const BookingCollection = Booking.collection;
 
-    // Get all indices
-    const indices = await BookingCollection.getIndexes();
-    console.log("Current indices:", Object.keys(indices));
+    // Get all indices and drop old ones if they exist
+    try {
+      const indices = await BookingCollection.getIndexes();
+      console.log("Current indices:", Object.keys(indices));
 
-    // Drop old "date_1" index if it exists
-    if (indices.date_1) {
-      await BookingCollection.dropIndex("date_1");
-      console.log("Dropped old date_1 index");
-    }
+      // Drop old "date_1" index if it exists
+      if (indices.date_1) {
+        await BookingCollection.dropIndex("date_1");
+        console.log("Dropped old date_1 index");
+      }
 
-    // Drop old "eventDate_1" index if it exists to recreate it
-    if (indices.eventDate_1) {
-      await BookingCollection.dropIndex("eventDate_1");
-      console.log("Dropped existing eventDate_1 index");
+      // Drop old "eventDate_1" index if it exists to recreate it
+      if (indices.eventDate_1) {
+        await BookingCollection.dropIndex("eventDate_1");
+        console.log("Dropped existing eventDate_1 index");
+      }
+    } catch (err) {
+      // Code 26 is NamespaceNotFound - safe to ignore since collection doesn't exist yet
+      if (err.code !== 26) {
+        console.warn("Warning updating indexes:", err.message);
+      }
     }
 
     // Migrate legacy documents where eventDate is missing/null but date exists

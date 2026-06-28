@@ -13,9 +13,13 @@ router.post("/upload/image", verifyAdmin, upload.single("image"), async (req, re
       return res.status(400).json({ message: "No file uploaded" });
     }
 
+    if (!req.body.event || !req.body.event.trim()) {
+      return res.status(400).json({ message: "Event name is required" });
+    }
+
     const response = await uploadImage(req.file.buffer, req.file.originalname);
 
-    const newImage = new Image({ event: req.body.event, image: response.url, mediaType: "image" });
+    const newImage = new Image({ event: req.body.event.trim(), image: response.url, mediaType: "image" });
     await newImage.save();
     res.status(201).json({ message: "Image saved successfully" });
   } catch (error) {
@@ -34,9 +38,13 @@ router.post("/upload/video", verifyAdmin, upload.single("video"), async (req, re
       return res.status(400).json({ message: "Only video files are allowed" });
     }
 
+    if (!req.body.event || !req.body.event.trim()) {
+      return res.status(400).json({ message: "Event name is required" });
+    }
+
     const response = await uploadImage(req.file.buffer, req.file.originalname);
 
-    const newVideo = new Image({ event: req.body.event, image: response.url, mediaType: "video" });
+    const newVideo = new Image({ event: req.body.event.trim(), image: response.url, mediaType: "video" });
     await newVideo.save();
     res.status(201).json({ message: "Video saved successfully" });
   } catch (error) {

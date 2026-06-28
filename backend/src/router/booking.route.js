@@ -20,10 +20,10 @@ router.post("/book", async (req, res) => {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
-    // Convert phone to number
-    const phoneNum = parseInt(phone, 10);
-    if (isNaN(phoneNum)) {
-      return res.status(400).json({ message: "Phone must be a valid number" });
+    // Validate phone number format (allow digits, spaces, dashes, and optional leading +)
+    const phoneStr = String(phone).trim();
+    if (!/^\+?[0-9\s\-]{7,15}$/.test(phoneStr)) {
+      return res.status(400).json({ message: "Phone must be a valid phone number" });
     }
 
     const normalizedDate = normalizeDate(date);
@@ -39,7 +39,7 @@ router.post("/book", async (req, res) => {
 
     const booking = await Booking.create({
       name,
-      phone: phoneNum,
+      phone: phoneStr,
       event,
       eventDate: normalizedDate,
       stayRoom: stayRoom || "Not required",
