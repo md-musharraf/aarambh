@@ -172,14 +172,31 @@ const Booking = () => {
 
     const { name, phone, event, date, guests, message, stayRoom } = data;
 
-    // ✅ Build WhatsApp message
+    // Format date from YYYY-MM-DD to DD-MM-YYYY for readability
+    const formatDate = (dateStr) => {
+      if (!dateStr) return "";
+      const parts = dateStr.split("-");
+      if (parts.length === 3) {
+        return `${parts[2]}-${parts[1]}-${parts[0]}`;
+      }
+      return dateStr;
+    };
+    const formattedDate = formatDate(date);
+
+    // ✅ Build WhatsApp message using Unicode escapes to prevent character corruption
     const text =
-      `🌿 *Aarambh Banquet Booking Request*\n\n` +
-      `👤 Name: ${name}\n📞 Phone: ${phone}\n🎉 Event: ${event}\n` +
-      `📅 Date: ${date}\n👥 Guests: ${guests}` +
-      `\n🛏️ Stay Room: ${stayRoom || "Not required"}` +
-      (message ? `\n💬 Message: ${message}` : "") +
-      `\n\nPlease confirm availability.`;
+      `\u{2728} *NEW BOOKING INQUIRY* \u{2728}\n` +
+      `*Aarambh Banquet, Ranchi*\n` +
+      `*----------------------------------*\n\n` +
+      `\u{1F464} *Name:* ${name}\n` +
+      `\u{1F4DE} *Phone:* ${phone}\n` +
+      `\u{1F389} *Event:* ${event}\n` +
+      `\u{1F4C5} *Date:* ${formattedDate}\n` +
+      `\u{1F465} *Guests:* ${guests}\n` +
+      `\u{1F3E8} *Stay Room:* ${stayRoom || "Not required"}\n` +
+      (message ? `\u{1F4AC} *Message:* ${message}\n` : "") +
+      `\n*----------------------------------*\n` +
+      `*Please confirm availability.*`;
 
     // ✅ Open WhatsApp IMMEDIATELY while still in the user-click context
     // (browsers block window.open after any await/async gap)
